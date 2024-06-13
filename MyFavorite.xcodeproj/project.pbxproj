@@ -13,6 +13,9 @@
 		7691B1132C1AE5290091C42B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7691B1122C1AE5290091C42B /* Assets.xcassets */; };
 		7691B1162C1AE5290091C42B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7691B1142C1AE5290091C42B /* LaunchScreen.storyboard */; };
 		7691B11E2C1AE5B20091C42B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7691B11D2C1AE5B20091C42B /* .gitignore */; };
+		7691B1262C1AE9460091C42B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B1252C1AE9460091C42B /* Constant.swift */; };
+		7691B1292C1AEAC80091C42B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B1282C1AEAC80091C42B /* UIColor+.swift */; };
+		7691B12B2C1AF0680091C42B /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B12A2C1AF0680091C42B /* UIImage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		7691B1152C1AE5290091C42B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7691B1172C1AE5290091C42B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7691B11D2C1AE5B20091C42B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7691B1252C1AE9460091C42B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		7691B1282C1AEAC80091C42B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		7691B12A2C1AF0680091C42B /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,8 @@
 		7691B1082C1AE5280091C42B /* MyFavorite */ = {
 			isa = PBXGroup;
 			children = (
+				7691B1272C1AEABD0091C42B /* Extension */,
+				7691B1242C1AE8A70091C42B /* Helper */,
 				7691B1092C1AE5280091C42B /* AppDelegate.swift */,
 				7691B10B2C1AE5280091C42B /* SceneDelegate.swift */,
 				7691B10D2C1AE5280091C42B /* ViewController.swift */,
@@ -65,6 +73,23 @@
 				7691B1172C1AE5290091C42B /* Info.plist */,
 			);
 			path = MyFavorite;
+			sourceTree = "<group>";
+		};
+		7691B1242C1AE8A70091C42B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7691B1252C1AE9460091C42B /* Constant.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7691B1272C1AEABD0091C42B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7691B1282C1AEAC80091C42B /* UIColor+.swift */,
+				7691B12A2C1AF0680091C42B /* UIImage+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +166,9 @@
 				7691B10E2C1AE5280091C42B /* ViewController.swift in Sources */,
 				7691B10A2C1AE5280091C42B /* AppDelegate.swift in Sources */,
 				7691B10C2C1AE5280091C42B /* SceneDelegate.swift in Sources */,
+				7691B12B2C1AF0680091C42B /* UIImage+.swift in Sources */,
+				7691B1262C1AE9460091C42B /* Constant.swift in Sources */,
+				7691B1292C1AEAC80091C42B /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
