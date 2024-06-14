@@ -8,11 +8,19 @@
 import UIKit
 
 class SelectImageViewController: UIViewController {
-    let rootView = SelectImageRootView()
-    var image: Int
+    let profile: Profile
+    var image: Int {
+        didSet {
+            rootView.selectedimage = image
+        }
+    }
 
-    init(image: Int) {
+    var rootView: SelectImageRootView
+
+    init(profile: Profile, image: Int) {
+        self.profile = profile
         self.image = image
+        self.rootView = SelectImageRootView(imageList: profile.imageList)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,6 +47,7 @@ class SelectImageViewController: UIViewController {
 
 extension SelectImageViewController: SelectImageRootViewDelegate {
     func didSelectItemAt(indexPath: IndexPath) {
-        rootView.selectedimage = ProfileImage.imageList[indexPath.item]
+        let image = profile.imageList[indexPath.item]
+        UserDefaultManager.image = image
     }
 }

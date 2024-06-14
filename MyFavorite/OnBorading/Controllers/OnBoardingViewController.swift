@@ -19,6 +19,12 @@ final class OnBoardingViewController: UIViewController {
         super.viewDidLoad()
         rootView.onBoardingViewDelegate = self
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let _ = UserDefaultManager.resetImage
+        let _ = UserDefaultManager.resetNickname
+    }
 }
 
 extension OnBoardingViewController: OnBoardingViewDelegate {

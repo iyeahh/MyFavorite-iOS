@@ -11,12 +11,13 @@ import SnapKit
 protocol SetNicknameViewDelegate: AnyObject {
     func textFieldDidChange(_ sender: UITextField)
     func setImageButtonTapped()
+    func completeButtonTapped()
 }
 
 final class SetNicknameView: UIView {
-    var randomImage = 0 {
+    var profileImage = 0 {
         didSet {
-            profileImageView.image = UIImage.getProfileImage(randomImage)
+            profileImageView.image = UIImage.getProfileImage(profileImage)
         }
     }
 
@@ -80,6 +81,7 @@ final class SetNicknameView: UIView {
 
     private let completeButton = {
         let button = AccentColorButton(title: Constant.LiteralString.Title.Button.complete)
+        button.addTarget(nil, action: #selector(completeButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -183,5 +185,9 @@ extension SetNicknameView {
 
     @objc private func textFieldDidChange(_ sender: UITextField) {
         setNicknameViewDelegate?.textFieldDidChange(sender)
+    }
+
+    @objc private func completeButtonTapped() {
+        setNicknameViewDelegate?.completeButtonTapped()
     }
 }

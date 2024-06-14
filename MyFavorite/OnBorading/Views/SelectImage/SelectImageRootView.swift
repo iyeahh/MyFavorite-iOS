@@ -13,6 +13,8 @@ protocol SelectImageRootViewDelegate: AnyObject {
 }
 
 class SelectImageRootView: UIView {
+    let imageList: [Int]
+
     var selectedimage = 0 {
         didSet {
             profileImageView.image = UIImage.getProfileImage(selectedimage)
@@ -60,8 +62,9 @@ class SelectImageRootView: UIView {
 
     weak var selectImageRootViewDelegate: SelectImageRootViewDelegate?
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(imageList: [Int]) {
+        self.imageList = imageList
+        super.init(frame: .zero)
         configureUI()
         configureHierarchy()
         configureLayout()
@@ -135,14 +138,14 @@ extension SelectImageRootView {
 extension SelectImageRootView: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ProfileImage.imageList.count
+        return imageList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectImageCollectionViewCell.identifier, for: indexPath) as? SelectImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let image = ProfileImage.imageList[indexPath.item]
+        let image = imageList[indexPath.item]
         if image == selectedimage {
             cell.configureIsSelectedBorder()
             cell.configureImage(image)
