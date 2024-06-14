@@ -8,7 +8,6 @@
 import UIKit
 
 final class OnBoardingViewController: UIViewController {
-
     private let rootView = OnBoardingView()
 
     override func loadView() {

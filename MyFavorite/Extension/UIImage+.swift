@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-    static func getCharactorImage(_ num: Int) -> UIImage? {
+    static func getProfileImage(_ num: Int) -> UIImage? {
         return UIImage(named: "profile_\(num)")
     }
 }

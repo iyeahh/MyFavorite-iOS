@@ -10,9 +10,15 @@ import SnapKit
 
 protocol SetNicknameViewDelegate: AnyObject {
     func textFieldDidChange(_ sender: UITextField)
+    func setImageButtonTapped()
 }
 
 final class SetNicknameView: UIView {
+    var randomImage = 0 {
+        didSet {
+            profileImageView.image = UIImage.getProfileImage(randomImage)
+        }
+    }
 
     var descriptionContent = "" {
         didSet {
@@ -26,19 +32,14 @@ final class SetNicknameView: UIView {
     }()
 
     private let profileImageView = {
-        let imageView = UIImageView()
-        let randomNum = Int.random(in: 0...11)
-        imageView.image = UIImage.getCharactorImage(randomNum)
-        imageView.layer.borderColor = Constant.Color.accent.cgColor
-        imageView.layer.borderWidth = Constant.LiteralNum.borderWidth
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFit
+        let imageView = ProfileImageView(borderColor: Constant.Color.accent, borderWidth: Constant.LiteralNum.borderWidth)
         return imageView
     }()
 
     private let setImageButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
+        button.addTarget(nil, action: #selector(setImageButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -176,6 +177,10 @@ extension SetNicknameView {
 }
 
 extension SetNicknameView {
+    @objc private func setImageButtonTapped() {
+        setNicknameViewDelegate?.setImageButtonTapped()
+    }
+
     @objc private func textFieldDidChange(_ sender: UITextField) {
         setNicknameViewDelegate?.textFieldDidChange(sender)
     }

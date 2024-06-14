@@ -28,12 +28,12 @@ enum Constant {
         case isSelected
         case unSelected
 
-        var borderSetting: (Int, CGFloat) {
+        var borderSetting: (borderWidth: CGFloat, alpha: CGFloat) {
             switch self {
             case .isSelected:
-                return (3, 100)
+                return (3, 1)
             case .unSelected:
-                return (1, 50)
+                return (1, 0.5)
             }
         }
     }
