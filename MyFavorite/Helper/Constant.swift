@@ -17,6 +17,11 @@ enum Constant {
         static let secondaryLightGray = UIColor(hex: 0xCDCDCD)
     }
 
+    enum Font {
+        static let title = UIFont(name: "Optima-ExtraBlack", size: 40)
+        static let bold15 = UIFont.boldSystemFont(ofSize: 15)
+    }
+
     enum Charactor {
         case isSelected
         case unSelected
@@ -51,6 +56,8 @@ enum Constant {
 
     enum LiteralString {
         enum Title {
+            static let service = "MyFavorite"
+
             enum navigationBar: String {
                 case profileSetting = "PROFILE SETTING"
                 case editProfile = "EDIT PROFILE"
