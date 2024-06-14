@@ -67,7 +67,7 @@ extension SetNicknameViewController: SetNicknameViewDelegate {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
 
-        let rootView = UINavigationController(rootViewController: SearchViewController())
+        let rootView = TabBarViewController()
         sceneDelegate?.window?.rootViewController = rootView
         sceneDelegate?.window?.makeKeyAndVisible()
     }

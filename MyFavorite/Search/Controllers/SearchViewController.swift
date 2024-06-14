@@ -7,12 +7,21 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
+    private let rootView = SearchRootView()
+
+    override func loadView() {
+        super.loadView()
+        view = rootView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        configureNavi()
     }
 
+    private func configureNavi() {
+        guard let nickname = UserDefaultManager.nickname else { return }
+        navigationItem.title = "\(nickname)" + Constant.LiteralString.Title.NavigationBar.meaningOut.rawValue
+    }
 }
