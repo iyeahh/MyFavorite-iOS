@@ -18,7 +18,16 @@ final class OnBoardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        rootView.onBoardingViewDelegate = self
     }
+}
 
+extension OnBoardingViewController: OnBoardingViewDelegate {
+    func startButtonTapped() {
+        let setNicknameVC = SetNicknameViewController()
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .black
+        navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController?.pushViewController(setNicknameVC, animated: true)
+    }
 }

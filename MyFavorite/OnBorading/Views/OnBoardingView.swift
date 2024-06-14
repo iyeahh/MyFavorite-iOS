@@ -8,8 +8,11 @@
 import UIKit
 import SnapKit
 
-final class OnBoardingView: UIView {
+protocol OnBoardingViewDelegate: AnyObject {
+    func startButtonTapped()
+}
 
+final class OnBoardingView: UIView {
     private let serviceTitleLabel = {
         let label = UILabel()
         label.font = Constant.Font.title
@@ -27,9 +30,12 @@ final class OnBoardingView: UIView {
     }()
 
     private let startButton = {
-        let button = AccentColorButton(title: Constant.LiteralString.Title.button.start)
+        let button = AccentColorButton(title: Constant.LiteralString.Title.Button.start)
+        button.addTarget(nil, action: #selector(startButtonTapped), for: .touchUpInside)
         return button
     }()
+
+    weak var onBoardingViewDelegate: OnBoardingViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,18 +48,20 @@ final class OnBoardingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @objc private func startButtonTapped() {
+        onBoardingViewDelegate?.startButtonTapped()
+    }
 }
 
 extension OnBoardingView {
-
     private func configureUI() {
         self.backgroundColor = Constant.Color.secondary
     }
 
     private func configureHierarchy() {
-        self.addSubview(serviceTitleLabel)
-        self.addSubview(mainImageView)
-        self.addSubview(startButton)
+        addSubview(serviceTitleLabel)
+        addSubview(mainImageView)
+        addSubview(startButton)
     }
 
     private func configureLayout() {
@@ -74,5 +82,4 @@ extension OnBoardingView {
             make.width.equalTo(mainImageView.snp.height)
         }
     }
-
 }

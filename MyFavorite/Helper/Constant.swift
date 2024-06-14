@@ -20,6 +20,8 @@ enum Constant {
     enum Font {
         static let title = UIFont(name: "Optima-ExtraBlack", size: 40)
         static let bold15 = UIFont.boldSystemFont(ofSize: 15)
+        static let system14 = UIFont.systemFont(ofSize: 14)
+        static let system13 = UIFont.systemFont(ofSize: 13)
     }
 
     enum Charactor {
@@ -54,33 +56,36 @@ enum Constant {
         }
     }
 
+    enum LiteralNum {
+        static let borderWidth: CGFloat = 5
+    }
+
     enum LiteralString {
         enum Title {
             static let service = "MyFavorite"
 
-            enum navigationBar: String {
+            enum NavigationBar: String {
                 case profileSetting = "PROFILE SETTING"
                 case editProfile = "EDIT PROFILE"
                 case meaningOut = "'s MEANING OUT"
                 case setting = "SETTING"
             }
 
-            enum tabBar: String {
+            enum TabBar: String {
                 case search = "검색"
                 case setting = "설정"
             }
 
-            enum button {
+            enum Button {
                 static let start = "시작하기"
                 static let complete = "완료"
             }
         }
 
-        enum TextField {
-            static let input = "닉네임을 입력해주세요 :)"
+        enum Nickname {
+            static let placeholer = "닉네임을 입력해주세요 :)"
             static let possible = "사용할 수 있는 닉네임이에요."
             static let incorrectNumber = "2글자 이상 10글자 미만으로 설정해주세요."
-            static let placeholder = "브랜드, 상품 등을 입력하세요."
 
             enum ContainWrongCharactor: String {
                 case at = "@"
@@ -95,6 +100,8 @@ enum Constant {
         }
 
         enum Search {
+            static let placeholder = "브랜드, 상품 등을 입력하세요."
+
             enum SearchWord {
                 static let noWord = "최근 검색어가 없어요"
                 static let latest = "최근 검색"
