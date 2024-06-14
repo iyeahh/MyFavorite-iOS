@@ -47,7 +47,7 @@ class SelectImageViewController: UIViewController {
 
 extension SelectImageViewController: SelectImageRootViewDelegate {
     func didSelectItemAt(indexPath: IndexPath) {
-        let image = profile.imageList[indexPath.item]
+        image = profile.imageList[indexPath.item]
         UserDefaultManager.image = image
     }
 }
