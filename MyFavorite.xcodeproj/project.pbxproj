@@ -14,6 +14,8 @@
 		767E5CD42C1BE4FB0045C2AF /* SetNicknameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E5CD32C1BE4FB0045C2AF /* SetNicknameView.swift */; };
 		767E5CD62C1BE7830045C2AF /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E5CD52C1BE7830045C2AF /* BarView.swift */; };
 		767E5CD82C1BEE9E0045C2AF /* SetNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E5CD72C1BEE9E0045C2AF /* SetNicknameViewController.swift */; };
+		767E5CDB2C1C07E80045C2AF /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 767E5CDA2C1C07E80045C2AF /* IQKeyboardManagerSwift */; };
+		767E5CDF2C1C0F3B0045C2AF /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E5CDE2C1C0F3B0045C2AF /* String+.swift */; };
 		7691B10A2C1AE5280091C42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B1092C1AE5280091C42B /* AppDelegate.swift */; };
 		7691B10C2C1AE5280091C42B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B10B2C1AE5280091C42B /* SceneDelegate.swift */; };
 		7691B1132C1AE5290091C42B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7691B1122C1AE5290091C42B /* Assets.xcassets */; };
@@ -31,6 +33,7 @@
 		767E5CD32C1BE4FB0045C2AF /* SetNicknameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameView.swift; sourceTree = "<group>"; };
 		767E5CD52C1BE7830045C2AF /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		767E5CD72C1BEE9E0045C2AF /* SetNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNicknameViewController.swift; sourceTree = "<group>"; };
+		767E5CDE2C1C0F3B0045C2AF /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		7691B1062C1AE5280091C42B /* MyFavorite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFavorite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7691B1092C1AE5280091C42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7691B10B2C1AE5280091C42B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7658D0052C1BDCC60038FAB0 /* SnapKit in Frameworks */,
+				767E5CDB2C1C07E80045C2AF /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +149,7 @@
 			children = (
 				7691B1282C1AEAC80091C42B /* UIColor+.swift */,
 				7691B12A2C1AF0680091C42B /* UIImage+.swift */,
+				767E5CDE2C1C0F3B0045C2AF /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 			name = MyFavorite;
 			packageProductDependencies = (
 				7658D0042C1BDCC60038FAB0 /* SnapKit */,
+				767E5CDA2C1C07E80045C2AF /* IQKeyboardManagerSwift */,
 			);
 			productName = MyFavorite;
 			productReference = 7691B1062C1AE5280091C42B /* MyFavorite.app */;
@@ -198,6 +204,7 @@
 			mainGroup = 7691B0FD2C1AE5280091C42B;
 			packageReferences = (
 				7658D0032C1BDCC60038FAB0 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				767E5CD92C1C07E80045C2AF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 7691B1072C1AE5280091C42B /* Products */;
 			projectDirPath = "";
@@ -232,6 +239,7 @@
 				7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */,
 				767E5CD42C1BE4FB0045C2AF /* SetNicknameView.swift in Sources */,
 				767E5CD62C1BE7830045C2AF /* BarView.swift in Sources */,
+				767E5CDF2C1C0F3B0045C2AF /* String+.swift in Sources */,
 				7691B10C2C1AE5280091C42B /* SceneDelegate.swift in Sources */,
 				7691B12B2C1AF0680091C42B /* UIImage+.swift in Sources */,
 				7658D0072C1BDEB90038FAB0 /* OnBoardingViewController.swift in Sources */,
@@ -469,6 +477,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		767E5CD92C1C07E80045C2AF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -476,6 +492,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7658D0032C1BDCC60038FAB0 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		767E5CDA2C1C07E80045C2AF /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 767E5CD92C1C07E80045C2AF /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

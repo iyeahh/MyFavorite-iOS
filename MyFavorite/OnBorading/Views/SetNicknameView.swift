@@ -8,7 +8,18 @@
 import UIKit
 import SnapKit
 
+protocol SetNicknameViewDelegate: AnyObject {
+    func textFieldDidChange(_ sender: UITextField)
+}
+
 final class SetNicknameView: UIView {
+
+    var descriptionContent = "" {
+        didSet {
+            descriptionLabel.text = descriptionContent
+        }
+    }
+
     private let naviBarView = {
         let view = BarView(color: Constant.Color.secondaryLightGray)
         return view
@@ -16,6 +27,8 @@ final class SetNicknameView: UIView {
 
     private let profileImageView = {
         let imageView = UIImageView()
+        let randomNum = Int.random(in: 0...11)
+        imageView.image = UIImage.getCharactorImage(randomNum)
         imageView.layer.borderColor = Constant.Color.accent.cgColor
         imageView.layer.borderWidth = Constant.LiteralNum.borderWidth
         imageView.layer.masksToBounds = true
@@ -69,8 +82,12 @@ final class SetNicknameView: UIView {
         return button
     }()
 
+    weak var setNicknameViewDelegate: SetNicknameViewDelegate?
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        nicknameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+
         configureUI()
         configureHierarchy()
         configureLayout()
@@ -155,5 +172,11 @@ extension SetNicknameView {
             make.top.equalTo(descriptionLabel.snp.bottom).offset(30)
             make.height.equalTo(40)
         }
+    }
+}
+
+extension SetNicknameView {
+    @objc private func textFieldDidChange(_ sender: UITextField) {
+        setNicknameViewDelegate?.textFieldDidChange(sender)
     }
 }
