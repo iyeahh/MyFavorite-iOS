@@ -9,8 +9,6 @@ import UIKit
 import SnapKit
 
 final class SelectImageCollectionViewCell: UICollectionViewCell {
-    static let identifier = "SelectImageCollectionViewCell"
-
     private let profileImageView = {
         let value = Constant.Charactor.unSelected.borderSetting
         let imageView = ProfileImageView(borderColor: Constant.Color.secondaryLightGray, borderWidth: value.borderWidth)

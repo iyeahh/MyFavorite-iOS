@@ -8,7 +8,15 @@
 import UIKit
 
 final class SearchViewController: UIViewController {
-    private let rootView = SearchRootView()
+    let searchWord = SearchWord()
+
+    private var searchWordList: [String] = UserDefaultManager.search?.makeArray ?? [] {
+        didSet {
+            rootView.searchWordList = searchWordList
+        }
+    }
+
+    private lazy var rootView = SearchRootView(searchWordList: searchWordList)
 
     override func loadView() {
         super.loadView()
@@ -18,10 +26,26 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavi()
+        rootView.searchRootViewDelegate = self
+        print(searchWordList.count)
     }
 
     private func configureNavi() {
         guard let nickname = UserDefaultManager.nickname else { return }
         navigationItem.title = "\(nickname)" + Constant.LiteralString.Title.NavigationBar.meaningOut.rawValue
+    }
+}
+
+extension SearchViewController: SearchRootViewDelegate {
+    func removeWordButtonTapped(index: Int) {
+        searchWordList = searchWord.removeWord(index: index)
+    }
+    
+    func searchButtonTapped(text: String) {
+        searchWordList = searchWord.setSearchWordList(text: text)
+    }
+
+    func removeAllButtonTapped() {
+        searchWordList = searchWord.removeAllWord()
     }
 }

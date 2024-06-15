@@ -20,6 +20,7 @@ enum Constant {
     enum Font {
         static let title = UIFont(name: "Optima-ExtraBlack", size: 40)
         static let bold15 = UIFont.boldSystemFont(ofSize: 15)
+        static let bold14 = UIFont.boldSystemFont(ofSize: 14)
         static let system14 = UIFont.systemFont(ofSize: 14)
         static let system13 = UIFont.systemFont(ofSize: 13)
     }
