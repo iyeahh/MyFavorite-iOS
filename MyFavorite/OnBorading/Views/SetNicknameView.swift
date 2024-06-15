@@ -33,7 +33,7 @@ final class SetNicknameView: UIView {
     }()
 
     private let profileImageView = {
-        let imageView = ProfileImageView(borderColor: Constant.Color.accent, borderWidth: Constant.LiteralNum.borderWidth)
+        let imageView = ProfileImageView(borderColor: Constant.Color.accent, borderWidth: Constant.LiteralNum.borderWidth5)
         return imageView
     }()
 

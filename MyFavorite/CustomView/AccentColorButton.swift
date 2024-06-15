@@ -12,7 +12,7 @@ final class AccentColorButton: UIButton {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         layer.masksToBounds = true
-        layer.cornerRadius = 20
+        layer.cornerRadius = Constant.LiteralNum.cornerRadius20
         backgroundColor = Constant.Color.accent
         titleLabel?.font = Constant.Font.bold15
         setTitleColor(Constant.Color.secondary, for: .normal)

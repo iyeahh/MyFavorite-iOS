@@ -19,8 +19,10 @@ enum Constant {
 
     enum Font {
         static let title = UIFont(name: "Optima-ExtraBlack", size: 40)
+        static let bold16 = UIFont.boldSystemFont(ofSize: 16)
         static let bold15 = UIFont.boldSystemFont(ofSize: 15)
         static let bold14 = UIFont.boldSystemFont(ofSize: 14)
+        static let system15 = UIFont.systemFont(ofSize: 15)
         static let system14 = UIFont.systemFont(ofSize: 14)
         static let system13 = UIFont.systemFont(ofSize: 13)
     }
@@ -58,7 +60,10 @@ enum Constant {
     }
 
     enum LiteralNum {
-        static let borderWidth: CGFloat = 5
+        static let borderWidth5: CGFloat = 5
+        static let borderWidth1: CGFloat = 1
+        static let cornerRadius10: CGFloat = 10
+        static let cornerRadius20: CGFloat = 20
     }
 
     enum LiteralString {
