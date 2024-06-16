@@ -21,4 +21,8 @@ extension String {
         let str = self.replacingOccurrences(of: "<b>", with: "")
         return str.replacingOccurrences(of: "</b>", with: "")
     }
+
+    var removeSlash: String {
+        return self.replacingOccurrences(of: #"\"#, with: "")
+    }
 }

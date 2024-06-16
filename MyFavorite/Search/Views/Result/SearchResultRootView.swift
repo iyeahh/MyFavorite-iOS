@@ -12,6 +12,7 @@ protocol SearchResultRootViewDelegate: AnyObject {
     func nextPage()
     func sortButtonTapped(_ standard: ResultSort)
     func isLikeCallBack(index: Int)
+    func selectedCell(index: Int)
 }
 
 final class SearchResultRootView: UIView {
@@ -215,6 +216,10 @@ extension SearchResultRootView: UICollectionViewDelegate, UICollectionViewDataSo
         }
         cell.setData(item)
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searchResultRootViewDelegate?.selectedCell(index: indexPath.item)
     }
 }
 

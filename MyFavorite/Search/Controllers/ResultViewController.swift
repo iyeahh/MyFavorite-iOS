@@ -60,7 +60,6 @@ extension ResultViewController {
             if self.isEnd {
                 return
             } else {
-//                guard let resultIems = value.items else { return }
                 let itemInfo = self.convertItemInfo(items: value.items)
                 if reload {
                     self.result = itemInfo
@@ -69,7 +68,6 @@ extension ResultViewController {
                 }
             }
 
-//            guard let total = value.total else { return }
             self.total = value.total
         }
     }
@@ -129,5 +127,16 @@ extension ResultViewController: SearchResultRootViewDelegate {
 
     func sortButtonTapped(_ standard: ResultSort) {
         sort = standard
+    }
+
+    func selectedCell(index: Int) {
+        let detailVC = DetailViewController()
+        detailVC.productId = result[index].productId
+        detailVC.url = result[index].link.removeSlash
+        detailVC.naviTitle = result[index].title
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .black
+        navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
