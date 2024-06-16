@@ -9,6 +9,18 @@ import UIKit
 import SnapKit
 
 final class SearchResultRootView: UIView {
+    var total: Int? = 0 {
+        didSet {
+            guard let totalString = total else { return }
+            resultCountLabel.text = totalString.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber
+        }
+    }
+    var items: [Item]? = [] {
+        didSet {
+            resultCollectionView.reloadData()
+        }
+    }
+
     private let topBarView = {
         let view = BarView(color: Constant.Color.secondaryLightGray)
         return view
@@ -17,7 +29,6 @@ final class SearchResultRootView: UIView {
     private let resultCountLabel = {
         let label = UILabel()
         label.textColor = Constant.Color.accent
-        label.text = "292,202개의 검색 결과"
         label.font = Constant.Font.bold15
         return label
     }()
@@ -46,12 +57,12 @@ final class SearchResultRootView: UIView {
 
     private func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 20
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.scrollDirection = .vertical
-        let width = (UIScreen.main.bounds.width - 30) / 2
-        layout.itemSize = CGSize(width: width, height: width * 1.6)
+        let width = (UIScreen.main.bounds.width - 40) / 2
+        layout.itemSize = CGSize(width: width, height: width * 1.7)
         return layout
     }
 
@@ -123,7 +134,7 @@ extension SearchResultRootView {
 
         resultCollectionView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
-            make.top.equalTo(lowPriceSortButton.snp.bottom)
+            make.top.equalTo(lowPriceSortButton.snp.bottom).offset(10)
             make.bottom.equalToSuperview().inset(1)
         }
 
@@ -144,13 +155,17 @@ extension SearchResultRootView {
 
 extension SearchResultRootView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let items = items else { return 0 }
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as? SearchResultCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as? SearchResultCollectionViewCell,
+              let item = items?[indexPath.item]
+        else {
             return UICollectionViewCell()
         }
+        cell.setData(item)
         return cell
     }
 }

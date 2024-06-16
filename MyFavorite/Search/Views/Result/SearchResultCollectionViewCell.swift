@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class SearchResultCollectionViewCell: UICollectionViewCell {
     private let resultImageView = {
@@ -119,5 +120,20 @@ extension SearchResultCollectionViewCell {
             make.leading.equalToSuperview()
             make.top.equalTo(resultTitleLabel.snp.bottom).offset(5)
         }
+    }
+}
+
+extension SearchResultCollectionViewCell {
+    func setData(_ item: Item) {
+        guard let image = item.image,
+              let mallName = item.mallName,
+              let title = item.title,
+              let price = item.lprice else { return }
+
+        let url = URL(string: image)
+        resultImageView.kf.setImage(with: url)
+        mallNameLabel.text = mallName
+        resultTitleLabel.text = title.makeOnlyString
+        priceLabel.text = price.makeInt
     }
 }

@@ -27,7 +27,6 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         configureNavi()
         rootView.searchRootViewDelegate = self
-        print(searchWordList.count)
     }
 
     private func configureNavi() {
@@ -47,6 +46,7 @@ extension SearchViewController: SearchRootViewDelegate {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .black
         navigationItem.backBarButtonItem = backBarButtonItem
+        resultVC.searchWord = text
         navigationController?.pushViewController(resultVC, animated: true)
     }
 

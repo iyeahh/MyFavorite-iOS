@@ -28,6 +28,7 @@ final class SelectImageCollectionViewCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        profileImageView.layoutIfNeeded()
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
     }
 }
