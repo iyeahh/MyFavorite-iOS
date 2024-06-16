@@ -10,6 +10,7 @@ import SnapKit
 
 protocol SearchResultRootViewDelegate: AnyObject {
     func nextPage()
+    func sortButtonTapped(_ standard: ResultSort)
 }
 
 final class SearchResultRootView: UIView {
@@ -21,6 +22,20 @@ final class SearchResultRootView: UIView {
     var items: [Item] = [] {
         didSet {
             resultCollectionView.reloadData()
+        }
+    }
+
+    lazy var array = [accuracySortButton, dateSortButton, highPriceSortButton, lowPriceSortButton]
+    var sort: ResultSort = .accuracy {
+        didSet {
+            let title = sort.buttonTitle
+            array.forEach { button in
+                if title == button.currentTitle {
+                    button.isTapped = true
+                } else {
+                    button.isTapped = false
+                }
+            }
         }
     }
 
@@ -37,22 +52,26 @@ final class SearchResultRootView: UIView {
     }()
 
     private let accuracySortButton = {
-        let button = GrayColorButton(title: ResultSort.accuracy.buttonTitle)
+        let button = GrayColorButton(isTapped: true, title: ResultSort.accuracy.buttonTitle)
+        button.addTarget(nil, action: #selector(accuracySortButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private let dateSortButton = {
-        let button = GrayColorButton(title: ResultSort.date.buttonTitle)
+        let button = GrayColorButton(isTapped: false, title: ResultSort.date.buttonTitle)
+        button.addTarget(nil, action: #selector(dateSortButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private let highPriceSortButton = {
-        let button = GrayColorButton(title: ResultSort.highPrice.buttonTitle)
+        let button = GrayColorButton(isTapped: false, title: ResultSort.highPrice.buttonTitle)
+        button.addTarget(nil, action: #selector(highPriceSortButtonTapped), for: .touchUpInside)
         return button
     }()
 
     private let lowPriceSortButton = {
-        let button = GrayColorButton(title: ResultSort.lowPrice.buttonTitle)
+        let button = GrayColorButton(isTapped: false, title: ResultSort.lowPrice.buttonTitle)
+        button.addTarget(nil, action: #selector(lowPriceSortButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -155,6 +174,28 @@ extension SearchResultRootView {
         resultCollectionView.dataSource = self
         resultCollectionView.prefetchDataSource = self
         resultCollectionView.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
+    }
+}
+
+extension SearchResultRootView {
+    @objc private func accuracySortButtonTapped() {
+        sortButtonTapped(.accuracy)
+    }
+
+    @objc private func dateSortButtonTapped() {
+        sortButtonTapped(.date)
+    }
+
+    @objc private func highPriceSortButtonTapped() {
+        sortButtonTapped(.highPrice)
+    }
+
+    @objc private func lowPriceSortButtonTapped() {
+        sortButtonTapped(.lowPrice)
+    }
+
+    private func sortButtonTapped(_ standard: ResultSort) {
+        searchResultRootViewDelegate?.sortButtonTapped(standard)
     }
 }
 

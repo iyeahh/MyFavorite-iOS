@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ResultSort: String {
+enum ResultSort: String, CaseIterable {
     case accuracy = "sim"
     case date = "date"
     case highPrice = "asc"

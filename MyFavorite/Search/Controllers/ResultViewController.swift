@@ -18,8 +18,13 @@ final class ResultViewController: UIViewController {
             }
         }
     }
-    var sort: ResultSort = .accuracy
-    var total: Int = 40 {
+    var sort: ResultSort = .accuracy {
+        didSet {
+            rootView.sort = sort
+            callRequest(reload: true)
+        }
+    }
+    var total: Int = 0 {
         didSet {
             rootView.total = total.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber
         }
@@ -48,17 +53,21 @@ final class ResultViewController: UIViewController {
         navigationItem.title = "\(searchWord)"
     }
 
-    func callRequest() {
+    func callRequest(reload: Bool = false) {
         NetworkManager.callRequest(query: searchWord, page: page, sort: sort) { value in
             if self.isEnd {
                 return
             } else {
                 guard let resultIems = value.items else { return }
-                self.result.append(contentsOf: resultIems)
+                if reload {
+                    self.result = resultIems
+                } else {
+                    self.result.append(contentsOf: resultIems)
+                }
             }
 
-//            guard let total = value.total else { return }
-//            self.total = total
+            guard let total = value.total else { return }
+            self.total = total
         }
     }
 }
@@ -66,5 +75,9 @@ final class ResultViewController: UIViewController {
 extension ResultViewController: SearchResultRootViewDelegate {
     func nextPage() {
         page += 1
+    }
+
+    func sortButtonTapped(_ standard: ResultSort) {
+        sort = standard
     }
 }
