@@ -8,11 +8,11 @@
 import Foundation
 
 struct ItemInfo {
-    let title: String?
-    let link: String?
-    let image: String?
-    let price: String?
-    let mallName: String?
-    let productId: String?
+    let title: String
+    let link: String
+    let image: String
+    let price: String
+    let mallName: String
+    let productId: String
     var isLiked = false
 }

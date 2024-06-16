@@ -17,7 +17,7 @@ extension String {
         return "\(intString.formatted())"
     }
 
-    var makeOnlyString: String? {
+    var makeOnlyString: String {
         let str = self.replacingOccurrences(of: "<b>", with: "")
         return str.replacingOccurrences(of: "</b>", with: "")
     }

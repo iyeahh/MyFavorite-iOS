@@ -131,11 +131,11 @@ extension SearchResultCollectionViewCell {
 }
 
 extension SearchResultCollectionViewCell {
-    func setData(_ item: ItemInfo?) {
-        guard let item = item else { return }
-        guard let image = item.image else { return }
+    func setData(_ item: ItemInfo) {
+//        guard let item = item else { return }
+//        guard let image = item.image else { return }
 
-        let url = URL(string: image)
+        let url = URL(string: item.image)
         resultImageView.kf.setImage(with: url)
         mallNameLabel.text = item.mallName
         resultTitleLabel.text = item.title

@@ -25,4 +25,10 @@ final class UserDefaultManager {
 
     @UserDefault(key: "search", reset: true)
     static var resetSearch: String?
+
+    @UserDefault(key: "isLike", reset: false)
+    static var isLike: String?
+
+    @UserDefault(key: "isLike", reset: true)
+    static var resetIsLike: String?
 }

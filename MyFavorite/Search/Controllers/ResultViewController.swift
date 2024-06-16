@@ -29,7 +29,7 @@ final class ResultViewController: UIViewController {
             rootView.total = total.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber
         }
     }
-    var result: [ItemInfo?] = [] {
+    var result: [ItemInfo] = [] {
         didSet {
             rootView.items = result
         }
@@ -60,8 +60,8 @@ extension ResultViewController {
             if self.isEnd {
                 return
             } else {
-                guard let resultIems = value.items else { return }
-                let itemInfo = self.convertItemInfo(items: resultIems)
+//                guard let resultIems = value.items else { return }
+                let itemInfo = self.convertItemInfo(items: value.items)
                 if reload {
                     self.result = itemInfo
                 } else {
@@ -69,30 +69,60 @@ extension ResultViewController {
                 }
             }
 
-            guard let total = value.total else { return }
-            self.total = total
+//            guard let total = value.total else { return }
+            self.total = value.total
         }
     }
 
-    private func convertItemInfo(items: [Item]) -> [ItemInfo?] {
+    private func convertItemInfo(items: [Item]) -> [ItemInfo] {
         return items.map { item in
             return ItemInfo(
-                title: item.title?.makeOnlyString,
+                title: item.title.makeOnlyString,
                 link: item.link,
                 image: item.image,
-                price: item.lprice?.makeInt,
+                price: item.lprice.makeInt ?? "",
                 mallName: item.mallName,
-                productId: item.productId
+                productId: item.productId,
+                isLiked: self.checkIsLike(productId: item.productId)
             )
         }
     }
 }
 
 extension ResultViewController: SearchResultRootViewDelegate {
-    func isLikeCallBack(index: Int) {
-        result[index]?.isLiked.toggle()
+    private func checkIsLike(productId: String) -> Bool {
+        guard let isLikeString = UserDefaultManager.isLike else { return false }
+        let array = isLikeString.makeArray
+        let removedArray = array.filter { str in
+            str == productId
+        }
+        if removedArray.count == 0 {
+            return false
+        } else {
+            return true
+        }
     }
-    
+
+    func isLikeCallBack(index: Int) {
+        if UserDefaultManager.isLike == nil || UserDefaultManager.isLike == "" {
+            UserDefaultManager.isLike = "빈배열아님"
+        }
+
+        guard let isLikeString = UserDefaultManager.isLike else { return }
+
+        if result[index].isLiked {
+            let array = isLikeString.makeArray
+            let removedArray = array.filter { str in
+                str != result[index].productId
+            }
+            UserDefaultManager.isLike = removedArray.joined(separator: " ")
+        } else {
+            UserDefaultManager.isLike = isLikeString + " " + result[index].productId
+        }
+
+        result[index].isLiked.toggle()
+    }
+
     func nextPage() {
         page += 1
     }

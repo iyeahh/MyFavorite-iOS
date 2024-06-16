@@ -20,7 +20,7 @@ final class SearchResultRootView: UIView {
             resultCountLabel.text = total
         }
     }
-    var items: [ItemInfo?] = [] {
+    var items: [ItemInfo] = [] {
         didSet {
             resultCollectionView.reloadData()
         }
