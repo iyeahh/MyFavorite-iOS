@@ -65,6 +65,7 @@ enum Constant {
         static let cornerRadius20: CGFloat = 20
         static let cornerRadius15: CGFloat = 15
         static let cornerRadius10: CGFloat = 10
+        static let display = 30
     }
 
     enum LiteralString {
@@ -117,18 +118,18 @@ enum Constant {
                 static let removeAll = "전체 삭제"
                 static let resultNumber = "개의 검색 결과"
             }
-
-            enum SortResult: String {
-                case accuracy = "  정확도  "
-                case date = "  날짜순  "
-                case highPrice = "  가격높은순  "
-                case lowPrice = "  가격낮은순  "
-            }
         }
 
         enum Networking {
             static let clientID = "X-Naver-Client-Id"
             static let clientSceret = "X-Naver-Client-Secret"
+
+            enum param: String {
+                case query
+                case start
+                case display
+                case sort
+            }
         }
     }
 }

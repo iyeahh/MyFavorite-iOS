@@ -8,12 +8,25 @@
 import UIKit
 
 final class ResultViewController: UIViewController {
-    let model = ResultModel()
     var searchWord: String = ""
-    var result: ResultEntity? {
+    var isEnd = false
+    var page = 1 {
         didSet {
-            rootView.total = result?.total
-            rootView.items = result?.items
+            callRequest()
+            if Double(total + 30) / 30.0 < Double(page) {
+                isEnd = true
+            }
+        }
+    }
+    var sort: ResultSort = .accuracy
+    var total: Int = 40 {
+        didSet {
+            rootView.total = total.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber
+        }
+    }
+    var result: [Item] = [] {
+        didSet {
+            rootView.items = result
         }
     }
 
@@ -27,17 +40,31 @@ final class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavi()
-        callRequest(query: searchWord)
+        callRequest()
+        rootView.searchResultRootViewDelegate = self
     }
 
     private func configureNavi() {
         navigationItem.title = "\(searchWord)"
     }
 
-    func callRequest(query: String) {
-        let url = URLString.searchNaver + query
-        NetworkManager.callRequest(url: url) { value in
-            self.result = value
+    func callRequest() {
+        NetworkManager.callRequest(query: searchWord, page: page, sort: sort) { value in
+            if self.isEnd {
+                return
+            } else {
+                guard let resultIems = value.items else { return }
+                self.result.append(contentsOf: resultIems)
+            }
+
+//            guard let total = value.total else { return }
+//            self.total = total
         }
+    }
+}
+
+extension ResultViewController: SearchResultRootViewDelegate {
+    func nextPage() {
+        page += 1
     }
 }

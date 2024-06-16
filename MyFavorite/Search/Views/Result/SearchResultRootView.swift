@@ -8,14 +8,17 @@
 import UIKit
 import SnapKit
 
+protocol SearchResultRootViewDelegate: AnyObject {
+    func nextPage()
+}
+
 final class SearchResultRootView: UIView {
-    var total: Int? = 0 {
+    var total: String = "" {
         didSet {
-            guard let totalString = total else { return }
-            resultCountLabel.text = totalString.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber
+            resultCountLabel.text = total
         }
     }
-    var items: [Item]? = [] {
+    var items: [Item] = [] {
         didSet {
             resultCollectionView.reloadData()
         }
@@ -34,22 +37,22 @@ final class SearchResultRootView: UIView {
     }()
 
     private let accuracySortButton = {
-        let button = GrayColorButton(title: Constant.LiteralString.Search.SortResult.accuracy.rawValue)
+        let button = GrayColorButton(title: ResultSort.accuracy.buttonTitle)
         return button
     }()
 
     private let dateSortButton = {
-        let button = GrayColorButton(title: Constant.LiteralString.Search.SortResult.date.rawValue)
+        let button = GrayColorButton(title: ResultSort.date.buttonTitle)
         return button
     }()
 
     private let highPriceSortButton = {
-        let button = GrayColorButton(title: Constant.LiteralString.Search.SortResult.highPrice.rawValue)
+        let button = GrayColorButton(title: ResultSort.highPrice.buttonTitle)
         return button
     }()
 
     private let lowPriceSortButton = {
-        let button = GrayColorButton(title: Constant.LiteralString.Search.SortResult.lowPrice.rawValue)
+        let button = GrayColorButton(title: ResultSort.lowPrice.buttonTitle)
         return button
     }()
 
@@ -71,6 +74,8 @@ final class SearchResultRootView: UIView {
         return view
     }()
 
+    weak var searchResultRootViewDelegate: SearchResultRootViewDelegate?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -82,7 +87,6 @@ final class SearchResultRootView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 extension SearchResultRootView {
@@ -149,23 +153,32 @@ extension SearchResultRootView {
     private func configureCollectionView() {
         resultCollectionView.delegate = self
         resultCollectionView.dataSource = self
+        resultCollectionView.prefetchDataSource = self
         resultCollectionView.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
     }
 }
 
 extension SearchResultRootView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let items = items else { return 0 }
         return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as? SearchResultCollectionViewCell,
-              let item = items?[indexPath.item]
-        else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as? SearchResultCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let item = items[indexPath.item]
         cell.setData(item)
         return cell
+    }
+}
+
+extension SearchResultRootView: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for item in indexPaths {
+            if items.count - 2 == item.item {
+                searchResultRootViewDelegate?.nextPage()
+            }
+        }
     }
 }
