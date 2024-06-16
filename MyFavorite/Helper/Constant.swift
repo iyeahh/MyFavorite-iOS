@@ -66,6 +66,7 @@ enum Constant {
         static let cornerRadius15: CGFloat = 15
         static let cornerRadius10: CGFloat = 10
         static let display = 30
+        static let backgroundAlpha: CGFloat = 0.5
     }
 
     enum LiteralString {

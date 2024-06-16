@@ -48,6 +48,7 @@
 		7697EBA52C1EA56C005D08E0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7697EBA42C1EA56C005D08E0 /* Kingfisher */; };
 		7697EBAA2C1EA6D6005D08E0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EBA92C1EA6D6005D08E0 /* APIKey.swift */; };
 		76F58E612C1EDA4000E038B5 /* ResultSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F58E602C1EDA4000E038B5 /* ResultSort.swift */; };
+		76F58E652C1F00E700E038B5 /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F58E642C1F00E700E038B5 /* ItemInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		7697EB9E2C1EA544005D08E0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7697EBA92C1EA6D6005D08E0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		76F58E602C1EDA4000E038B5 /* ResultSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSort.swift; sourceTree = "<group>"; };
+		76F58E642C1F00E700E038B5 /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			children = (
 				7697EB902C1D1EA2005D08E0 /* SearchWord.swift */,
 				76F58E602C1EDA4000E038B5 /* ResultSort.swift */,
+				76F58E642C1F00E700E038B5 /* ItemInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				7697EB952C1D713D005D08E0 /* SearchResultRootView.swift in Sources */,
 				767E5D0A2C1C74790045C2AF /* ReuseIdentifierProtocol.swift in Sources */,
 				767E5CFE2C1C67300045C2AF /* TabBarViewController.swift in Sources */,
+				76F58E652C1F00E700E038B5 /* ItemInfo.swift in Sources */,
 				7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */,
 				7697EB992C1D75DD005D08E0 /* GrayColorButton.swift in Sources */,
 				767E5CD82C1BEE9E0045C2AF /* SetNicknameViewController.swift in Sources */,

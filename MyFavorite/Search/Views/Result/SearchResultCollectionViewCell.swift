@@ -10,6 +10,8 @@ import SnapKit
 import Kingfisher
 
 final class SearchResultCollectionViewCell: UICollectionViewCell {
+    var isLikeCallBack: (() -> Void)?
+
     private let resultImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -37,6 +39,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     private let isLikeButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
+        button.addTarget(nil, action: #selector(isLikeButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -70,6 +73,10 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func isLikeButtonTapped() {
+        isLikeCallBack?()
     }
 }
 
@@ -124,16 +131,22 @@ extension SearchResultCollectionViewCell {
 }
 
 extension SearchResultCollectionViewCell {
-    func setData(_ item: Item) {
-        guard let image = item.image,
-              let mallName = item.mallName,
-              let title = item.title,
-              let price = item.lprice else { return }
+    func setData(_ item: ItemInfo?) {
+        guard let item = item else { return }
+        guard let image = item.image else { return }
 
         let url = URL(string: image)
         resultImageView.kf.setImage(with: url)
-        mallNameLabel.text = mallName
-        resultTitleLabel.text = title.makeOnlyString
-        priceLabel.text = price.makeInt
+        mallNameLabel.text = item.mallName
+        resultTitleLabel.text = item.title
+        priceLabel.text = item.price
+
+        if item.isLiked {
+            isLikeBackgrounView.backgroundColor = Constant.Color.secondary
+            isLikeImagaeView.image = Constant.Image.Icon.likeSelected
+        } else {
+            isLikeBackgrounView.backgroundColor = Constant.Color.primary.withAlphaComponent(Constant.LiteralNum.backgroundAlpha)
+            isLikeImagaeView.image = Constant.Image.Icon.likeUnselected
+        }
     }
 }

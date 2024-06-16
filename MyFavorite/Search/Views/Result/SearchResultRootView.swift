@@ -11,6 +11,7 @@ import SnapKit
 protocol SearchResultRootViewDelegate: AnyObject {
     func nextPage()
     func sortButtonTapped(_ standard: ResultSort)
+    func isLikeCallBack(index: Int)
 }
 
 final class SearchResultRootView: UIView {
@@ -19,7 +20,7 @@ final class SearchResultRootView: UIView {
             resultCountLabel.text = total
         }
     }
-    var items: [Item] = [] {
+    var items: [ItemInfo?] = [] {
         didSet {
             resultCollectionView.reloadData()
         }
@@ -209,6 +210,9 @@ extension SearchResultRootView: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
         let item = items[indexPath.item]
+        cell.isLikeCallBack = {
+            self.searchResultRootViewDelegate?.isLikeCallBack(index: indexPath.item)
+        }
         cell.setData(item)
         return cell
     }

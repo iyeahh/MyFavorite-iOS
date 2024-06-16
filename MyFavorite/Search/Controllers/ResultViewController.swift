@@ -9,8 +9,8 @@ import UIKit
 
 final class ResultViewController: UIViewController {
     var searchWord: String = ""
-    var isEnd = false
-    var page = 1 {
+    private var isEnd = false
+    private var page = 1 {
         didSet {
             callRequest()
             if Double(total + 30) / 30.0 < Double(page) {
@@ -18,18 +18,18 @@ final class ResultViewController: UIViewController {
             }
         }
     }
-    var sort: ResultSort = .accuracy {
+    private var sort: ResultSort = .accuracy {
         didSet {
             rootView.sort = sort
             callRequest(reload: true)
         }
     }
-    var total: Int = 0 {
+    private var total: Int = 0 {
         didSet {
             rootView.total = total.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber
         }
     }
-    var result: [Item] = [] {
+    var result: [ItemInfo?] = [] {
         didSet {
             rootView.items = result
         }
@@ -52,17 +52,20 @@ final class ResultViewController: UIViewController {
     private func configureNavi() {
         navigationItem.title = "\(searchWord)"
     }
+}
 
-    func callRequest(reload: Bool = false) {
+extension ResultViewController {
+    private func callRequest(reload: Bool = false) {
         NetworkManager.callRequest(query: searchWord, page: page, sort: sort) { value in
             if self.isEnd {
                 return
             } else {
                 guard let resultIems = value.items else { return }
+                let itemInfo = self.convertItemInfo(items: resultIems)
                 if reload {
-                    self.result = resultIems
+                    self.result = itemInfo
                 } else {
-                    self.result.append(contentsOf: resultIems)
+                    self.result.append(contentsOf: itemInfo)
                 }
             }
 
@@ -70,9 +73,26 @@ final class ResultViewController: UIViewController {
             self.total = total
         }
     }
+
+    private func convertItemInfo(items: [Item]) -> [ItemInfo?] {
+        return items.map { item in
+            return ItemInfo(
+                title: item.title?.makeOnlyString,
+                link: item.link,
+                image: item.image,
+                price: item.lprice?.makeInt,
+                mallName: item.mallName,
+                productId: item.productId
+            )
+        }
+    }
 }
 
 extension ResultViewController: SearchResultRootViewDelegate {
+    func isLikeCallBack(index: Int) {
+        result[index]?.isLiked.toggle()
+    }
+    
     func nextPage() {
         page += 1
     }
