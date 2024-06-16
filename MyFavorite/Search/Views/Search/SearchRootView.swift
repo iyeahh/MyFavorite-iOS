@@ -12,6 +12,7 @@ protocol SearchRootViewDelegate: AnyObject {
     func searchButtonTapped(text: String)
     func removeAllButtonTapped()
     func removeWordButtonTapped(index: Int)
+    func selectCell(index: Int)
 }
 
 final class SearchRootView: UIView {
@@ -220,13 +221,17 @@ extension SearchRootView: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        cell.callBackMehtod = {
+        cell.removeCallBack = {
             self.searchRootViewDelegate?.removeWordButtonTapped(index: indexPath.row)
         }
 
         let data = searchWordList[indexPath.row]
         cell.setSearchWord(data)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchRootViewDelegate?.selectCell(index: indexPath.row)
     }
 }
 

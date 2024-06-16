@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class SearchWordTableViewCell: UITableViewCell {
-    var callBackMehtod: (() -> Void)?
+    var removeCallBack: (() -> Void)?
 
     private let iconImageView = {
         let imageView = UIImageView()
@@ -46,7 +46,7 @@ final class SearchWordTableViewCell: UITableViewCell {
     }
 
     @objc private func removeWordButtonTapped(searchWordIndex: Int) {
-        callBackMehtod?()
+        removeCallBack?()
     }
 }
 

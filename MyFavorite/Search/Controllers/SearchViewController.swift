@@ -42,6 +42,15 @@ extension SearchViewController: SearchRootViewDelegate {
     
     func searchButtonTapped(text: String) {
         searchWordList = searchWord.setSearchWordList(text: text)
+        searchWord(text: text)
+    }
+
+    func selectCell(index: Int) {
+        let text = searchWordList[index]
+        searchWord(text: text)
+    }
+
+    func searchWord(text: String) {
         let resultVC = ResultViewController()
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .black
