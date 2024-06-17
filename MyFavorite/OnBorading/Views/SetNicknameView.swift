@@ -15,6 +15,13 @@ protocol SetNicknameViewDelegate: AnyObject {
 }
 
 final class SetNicknameView: UIView {
+    var nickname: String? {
+        didSet {
+            nicknameTextField.text = nickname
+        }
+    }
+
+    var state: State
     var profileImage = 0 {
         didSet {
             profileImageView.image = UIImage.getProfileImage(profileImage)
@@ -87,9 +94,14 @@ final class SetNicknameView: UIView {
 
     weak var setNicknameViewDelegate: SetNicknameViewDelegate?
 
-    override init(frame: CGRect) {
+    init(state: State) {
+        self.state = state
         super.init(frame: .zero)
         nicknameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+
+        if state == .edit {
+            completeButton.isHidden = true
+        }
 
         configureUI()
         configureHierarchy()

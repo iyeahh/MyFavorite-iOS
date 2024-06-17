@@ -8,7 +8,11 @@
 import UIKit
 
 final class SettingViewController: UIViewController {
-    lazy var userInfo = getUserInfo()
+    lazy var userInfo = getUserInfo() {
+        didSet {
+            rootView.userInfo = userInfo
+        }
+    }
     private lazy var rootView = SettingRootView(userInfo: userInfo)
 
     override func loadView() {
@@ -21,7 +25,12 @@ final class SettingViewController: UIViewController {
         configureNavi()
         rootView.settingRootViewDelegate = self
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        userInfo = getUserInfo()
+    }
+
     private func configureNavi() {
         navigationItem.title = Constant.LiteralString.Title.NavigationBar.setting.rawValue
     }
@@ -74,5 +83,13 @@ extension SettingViewController: SettingRootViewDelegate {
         let rootView = UINavigationController(rootViewController: OnBoardingViewController())
         sceneDelegate?.window?.rootViewController = rootView
         sceneDelegate?.window?.makeKeyAndVisible()
+    }
+
+    func editButtonTapped() {
+        let editProfileVC = SetNicknameViewController(state: .edit)
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButtonItem.tintColor = .black
+        navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController?.pushViewController(editProfileVC, animated: true)
     }
 }

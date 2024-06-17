@@ -11,6 +11,7 @@
 		761166212C1FFC1600661581 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166202C1FFC1600661581 /* SettingTableViewCell.swift */; };
 		761166232C200BD600661581 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166222C200BD600661581 /* Date+.swift */; };
 		761166252C200E5400661581 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166242C200E5400661581 /* UserInfo.swift */; };
+		761166272C201D0A00661581 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166262C201D0A00661581 /* State.swift */; };
 		7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */; };
 		7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */; };
 		7658D0052C1BDCC60038FAB0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7658D0042C1BDCC60038FAB0 /* SnapKit */; };
@@ -62,6 +63,7 @@
 		761166202C1FFC1600661581 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		761166222C200BD600661581 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		761166242C200E5400661581 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		761166262C201D0A00661581 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorButton.swift; sourceTree = "<group>"; };
 		7658D0062C1BDEB90038FAB0 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				767E5CF12C1C30B60045C2AF /* Profile.swift */,
+				761166262C201D0A00661581 /* State.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				767E5CF22C1C30B60045C2AF /* Profile.swift in Sources */,
 				767E5CEC2C1C24030045C2AF /* SelectImageViewController.swift in Sources */,
 				7691B10A2C1AE5280091C42B /* AppDelegate.swift in Sources */,
+				761166272C201D0A00661581 /* State.swift in Sources */,
 				7697EB9B2C1D7D61005D08E0 /* ResultViewController.swift in Sources */,
 				7611661F2C1FFC0200661581 /* SettingRootView.swift in Sources */,
 				761166232C200BD600661581 /* Date+.swift in Sources */,

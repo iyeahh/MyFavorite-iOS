@@ -8,16 +8,17 @@
 import UIKit
 
 class SelectImageViewController: UIViewController {
-    let profile: Profile
+    var state: State
+    var profile: Profile
     var image: Int {
         didSet {
             rootView.selectedimage = image
         }
     }
-
     var rootView: SelectImageRootView
 
-    init(profile: Profile, image: Int) {
+    init(state: State, profile: Profile, image: Int) {
+        self.state = state
         self.profile = profile
         self.image = image
         self.rootView = SelectImageRootView(imageList: profile.imageList)
@@ -41,7 +42,11 @@ class SelectImageViewController: UIViewController {
     }
 
     private func configureNavi() {
-        navigationItem.title = Constant.LiteralString.Title.NavigationBar.profileSetting.rawValue
+        if state == .create {
+            navigationItem.title = State.create.rawValue
+        } else {
+            navigationItem.title = State.edit.rawValue
+        }
     }
 }
 

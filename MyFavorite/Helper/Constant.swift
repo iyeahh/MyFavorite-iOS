@@ -75,8 +75,6 @@ enum Constant {
             static let service = "MyFavorite"
 
             enum NavigationBar: String {
-                case profileSetting = "PROFILE SETTING"
-                case editProfile = "EDIT PROFILE"
                 case meaningOut = "'s MEANING OUT"
                 case setting = "SETTING"
             }
@@ -89,6 +87,7 @@ enum Constant {
             enum Button {
                 static let start = "시작하기"
                 static let complete = "완료"
+                static let save = "저장"
             }
         }
 

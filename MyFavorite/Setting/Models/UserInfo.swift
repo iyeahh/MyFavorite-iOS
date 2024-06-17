@@ -13,8 +13,10 @@ struct UserInfo {
     var joinDate = ""
 
     var likeCount: String {
-        guard let isLikeList = UserDefaultManager.isLike else { return "0" }
-        var array = isLikeList.makeArray
+        guard let isLikeList = UserDefaultManager.isLike else {
+            return "0 \(Constant.LiteralString.Setting.likeCount)"
+        }
+        let array = isLikeList.makeArray
         return "\(array.count)" + "\(Constant.LiteralString.Setting.likeCount)"
     }
 }

@@ -10,10 +10,15 @@ import SnapKit
 
 protocol SettingRootViewDelegate: AnyObject {
     func selectCell(index: Int)
+    func editButtonTapped()
 }
 
 final class SettingRootView: UIView {
-    var userInfo: UserInfo?
+    var userInfo: UserInfo? {
+        didSet {
+            configureUserInfo()
+        }
+    }
 
     private let settingList = [
         Constant.LiteralString.Setting.shoppingList.rawValue,
@@ -57,9 +62,10 @@ final class SettingRootView: UIView {
         return imageView
     }()
 
-    private let settingButton = {
+    private let editButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
+        button.addTarget(nil, action: #selector(editButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -93,6 +99,15 @@ final class SettingRootView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        configureUI()
+    }
+
+    @objc private func editButtonTapped() {
+        settingRootViewDelegate?.editButtonTapped()
+    }
 }
 
 extension SettingRootView {
@@ -106,7 +121,7 @@ extension SettingRootView {
         addSubview(nickNameLabel)
         addSubview(joinDateLabel)
         addSubview(nextImageView)
-        addSubview(settingButton)
+        addSubview(editButton)
         addSubview(tableViewBar)
         addSubview(settingTableView)
         addSubview(bottomBarView)
@@ -152,7 +167,7 @@ extension SettingRootView {
             make.height.equalTo(1)
         }
 
-        settingButton.snp.makeConstraints { make in
+        editButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide)
             make.bottom.equalTo(settingTableView.snp.top)
