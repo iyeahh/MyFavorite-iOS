@@ -47,4 +47,17 @@ final class UserDefaultManager {
         let _ = UserDefaultManager.resetSearch
         let _ = UserDefaultManager.resetIsLike
     }
+
+    static func checkIsLike(productId: String) -> Bool {
+        guard let isLikeString = UserDefaultManager.isLike else { return false }
+        let array = isLikeString.makeArray
+        let removedArray = array.filter { str in
+            str == productId
+        }
+        if removedArray.count == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
 }

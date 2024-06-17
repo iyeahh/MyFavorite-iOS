@@ -51,7 +51,8 @@ extension SearchViewController: SearchRootViewDelegate {
     }
 
     func searchWord(text: String) {
-        let resultVC = ResultViewController()
+        let searchResult = SearchResult(searchWord: text)
+        let resultVC = ResultViewController(searchResult: searchResult)
         moveNextVC(vc: resultVC)
     }
 

@@ -8,27 +8,24 @@
 import UIKit
 
 final class ResultViewController: UIViewController {
-    var searchWord: String = ""
-    private var isEnd = false
+    var searchResult: SearchResult
+
     private var page = 1 {
         didSet {
             callRequest()
-            if Double(total + 30) / 30.0 < Double(page) {
-                isEnd = true
+            if Double(searchResult.total + 30) / 30.0 < Double(page) {
+                searchResult.isEnd = true
             }
         }
     }
+
     private var sort: ResultSort = .accuracy {
         didSet {
             rootView.sort = sort
             callRequest(reload: true)
         }
     }
-    private var total: Int = 0 {
-        didSet {
-            rootView.total = total.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber
-        }
-    }
+
     var result: [ItemInfo] = [] {
         didSet {
             rootView.items = result
@@ -37,6 +34,15 @@ final class ResultViewController: UIViewController {
 
     private let rootView = SearchResultRootView()
 
+    init(searchResult: SearchResult) {
+        self.searchResult = searchResult
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         super.loadView()
         view = rootView
@@ -49,80 +55,34 @@ final class ResultViewController: UIViewController {
         rootView.searchResultRootViewDelegate = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-    }
-
     private func configureNavi() {
-        navigationItem.title = "\(searchWord)"
+        navigationItem.title = "\(searchResult.searchWord)"
     }
 }
 
 extension ResultViewController {
     private func callRequest(reload: Bool = false) {
-        NetworkManager.callRequest(query: searchWord, page: page, sort: sort) { value in
-            if self.isEnd {
+        NetworkManager.callRequest(query: searchResult.searchWord, page: page, sort: sort) { value in
+            if self.searchResult.isEnd {
                 return
             } else {
-                let itemInfo = self.convertItemInfo(items: value.items)
+                let itemInfo = self.searchResult.convertItemInfo(items: value.items)
                 if reload {
                     self.result = itemInfo
                 } else {
                     self.result.append(contentsOf: itemInfo)
                 }
             }
-
-            self.total = value.total
-        }
-    }
-
-    private func convertItemInfo(items: [Item]) -> [ItemInfo] {
-        return items.map { item in
-            return ItemInfo(
-                title: item.title.makeOnlyString,
-                link: item.link,
-                image: item.image,
-                price: item.lprice.makeInt ?? "",
-                mallName: item.mallName,
-                productId: item.productId,
-                isLiked: self.checkIsLike(productId: item.productId)
-            )
+            self.searchResult.total = value.total
+            self.rootView.total = self.searchResult.totalString
         }
     }
 }
 
 extension ResultViewController: SearchResultRootViewDelegate {
-    private func checkIsLike(productId: String) -> Bool {
-        guard let isLikeString = UserDefaultManager.isLike else { return false }
-        let array = isLikeString.makeArray
-        let removedArray = array.filter { str in
-            str == productId
-        }
-        if removedArray.count == 0 {
-            return false
-        } else {
-            return true
-        }
-    }
-
     func isLikeCallBack(index: Int) {
-        if UserDefaultManager.isLike == nil || UserDefaultManager.isLike == "" {
-            UserDefaultManager.isLike = "빈배열아님"
-        }
-
-        guard let isLikeString = UserDefaultManager.isLike else { return }
-
-        if result[index].isLiked {
-            let array = isLikeString.makeArray
-            let removedArray = array.filter { str in
-                str != result[index].productId
-            }
-            UserDefaultManager.isLike = removedArray.joined(separator: " ")
-        } else {
-            UserDefaultManager.isLike = isLikeString + " " + result[index].productId
-        }
-
+        let itemInfo = result[index]
+        searchResult.likeButtonTapped(itemInfo: itemInfo)
         result[index].isLiked.toggle()
     }
 

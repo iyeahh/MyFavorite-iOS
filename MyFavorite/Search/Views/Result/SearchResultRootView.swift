@@ -160,7 +160,7 @@ extension SearchResultRootView {
         resultCollectionView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(lowPriceSortButton.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().inset(1)
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(1)
         }
 
         bottomBarView.snp.makeConstraints { make in

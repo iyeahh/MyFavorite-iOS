@@ -13,6 +13,7 @@
 		761166252C200E5400661581 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166242C200E5400661581 /* UserInfo.swift */; };
 		761166272C201D0A00661581 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166262C201D0A00661581 /* State.swift */; };
 		7611662D2C202E6600661581 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611662C2C202E6600661581 /* UIViewController+.swift */; };
+		7611662F2C20385E00661581 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611662E2C20385E00661581 /* SearchResult.swift */; };
 		7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */; };
 		7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */; };
 		7658D0052C1BDCC60038FAB0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7658D0042C1BDCC60038FAB0 /* SnapKit */; };
@@ -66,6 +67,7 @@
 		761166242C200E5400661581 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		761166262C201D0A00661581 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		7611662C2C202E6600661581 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		7611662E2C20385E00661581 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorButton.swift; sourceTree = "<group>"; };
 		7658D0062C1BDEB90038FAB0 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				7697EB902C1D1EA2005D08E0 /* SearchWord.swift */,
 				76F58E602C1EDA4000E038B5 /* ResultSort.swift */,
 				76F58E642C1F00E700E038B5 /* ItemInfo.swift */,
+				7611662E2C20385E00661581 /* SearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				767E5CD42C1BE4FB0045C2AF /* SetNicknameView.swift in Sources */,
 				767E5CD62C1BE7830045C2AF /* BarView.swift in Sources */,
 				76ADE37C2C1F1F0200CC23CB /* DetailViewController.swift in Sources */,
+				7611662F2C20385E00661581 /* SearchResult.swift in Sources */,
 				767E5D062C1C68EA0045C2AF /* SearchRootView.swift in Sources */,
 				761166212C1FFC1600661581 /* SettingTableViewCell.swift in Sources */,
 				767E5CDF2C1C0F3B0045C2AF /* String+.swift in Sources */,
