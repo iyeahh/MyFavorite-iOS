@@ -7,9 +7,10 @@
 
 import UIKit
 
-class Profile {
+final class Profile {
     let imageList: [Int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     var nickname: String?
+    var state: State
 
     var isPossible: Bool {
         let message = Constant.LiteralString.Nickname.possible
@@ -17,6 +18,10 @@ class Profile {
             return false
         }
         return true
+    }
+
+    init(state: State) {
+        self.state = state
     }
 
     func randomImage() -> Int {
@@ -27,7 +32,7 @@ class Profile {
     }
 
     func determineNickname(input: String?) -> String {
-        var message = "m"
+        var message = ""
 
         guard let text = input else {
             return Constant.LiteralString.Nickname.whiteSpace

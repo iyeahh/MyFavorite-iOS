@@ -72,24 +72,14 @@ extension SettingViewController: SettingRootViewDelegate {
     }
 
     private func confirmButtonTapped() {
-        let _ = UserDefaultManager.resetImage
-        let _ = UserDefaultManager.resetNickname
-        let _ = UserDefaultManager.resetJoinDate
-        let _ = UserDefaultManager.resetSearch
-        let _ = UserDefaultManager.resetIsLike
+        UserDefaultManager.removeAll()
 
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        let rootView = UINavigationController(rootViewController: OnBoardingViewController())
-        sceneDelegate?.window?.rootViewController = rootView
-        sceneDelegate?.window?.makeKeyAndVisible()
+        let onBoardingVC = OnBoardingViewController()
+        moveNextVCWithWindow(vc: onBoardingVC)
     }
 
     func editButtonTapped() {
         let editProfileVC = SetNicknameViewController(state: .edit)
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .black
-        navigationItem.backBarButtonItem = backBarButtonItem
-        navigationController?.pushViewController(editProfileVC, animated: true)
+        moveNextVC(vc: editProfileVC)
     }
 }

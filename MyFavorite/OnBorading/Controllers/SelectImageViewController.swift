@@ -8,7 +8,6 @@
 import UIKit
 
 class SelectImageViewController: UIViewController {
-    var state: State
     var profile: Profile
     var image: Int {
         didSet {
@@ -17,8 +16,7 @@ class SelectImageViewController: UIViewController {
     }
     var rootView: SelectImageRootView
 
-    init(state: State, profile: Profile, image: Int) {
-        self.state = state
+    init(profile: Profile, image: Int) {
         self.profile = profile
         self.image = image
         self.rootView = SelectImageRootView(imageList: profile.imageList)
@@ -42,7 +40,7 @@ class SelectImageViewController: UIViewController {
     }
 
     private func configureNavi() {
-        if state == .create {
+        if profile.state == .create {
             navigationItem.title = State.create.rawValue
         } else {
             navigationItem.title = State.edit.rawValue

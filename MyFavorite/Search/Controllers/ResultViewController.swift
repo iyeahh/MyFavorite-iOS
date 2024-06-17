@@ -141,9 +141,6 @@ extension ResultViewController: SearchResultRootViewDelegate {
         detailVC.url = item.link.removeSlash
         detailVC.naviTitle = item.title
         detailVC.isLike = item.isLiked
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .black
-        navigationItem.backBarButtonItem = backBarButtonItem
-        navigationController?.pushViewController(detailVC, animated: true)
+        moveNextVC(vc: detailVC)
     }
 }

@@ -15,13 +15,14 @@ protocol SetNicknameViewDelegate: AnyObject {
 }
 
 final class SetNicknameView: UIView {
+    var state: State
+
     var nickname: String? {
         didSet {
             nicknameTextField.text = nickname
         }
     }
 
-    var state: State
     var profileImage = 0 {
         didSet {
             profileImageView.image = UIImage.getProfileImage(profileImage)

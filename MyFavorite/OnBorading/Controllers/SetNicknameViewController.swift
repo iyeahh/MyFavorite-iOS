@@ -8,8 +8,7 @@
 import UIKit
 
 final class SetNicknameViewController: UIViewController {
-    var state: State
-    let profile = Profile()
+    let profile: Profile
 
     var nickname: String? {
         didSet {
@@ -17,16 +16,16 @@ final class SetNicknameViewController: UIViewController {
         }
     }
 
-    private lazy var rootView = SetNicknameView(state: state)
-
     lazy var image = 0 {
         didSet {
             rootView.profileImage = image
         }
     }
 
+    private lazy var rootView = SetNicknameView(state: profile.state)
+
     init(state: State) {
-        self.state = state
+        self.profile = Profile(state: state)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -53,18 +52,17 @@ final class SetNicknameViewController: UIViewController {
         }
         image = savedImage
 
-        if state == .edit {
+        if profile.state == .edit {
             nickname = UserDefaultManager.nickname
         }
     }
 
     private func configureNavi() {
-
-
-        if state == .create {
+        if profile.state == .create {
             navigationItem.title = State.create.rawValue
         } else {
             navigationItem.title = State.edit.rawValue
+
             let barButtonItem = UIBarButtonItem(title: Constant.LiteralString.Title.Button.save, style: .plain, target: self, action: #selector(saveButtonTapped))
             barButtonItem.tintColor = Constant.Color.primary
             navigationItem.rightBarButtonItem = barButtonItem
@@ -85,11 +83,8 @@ final class SetNicknameViewController: UIViewController {
 
 extension SetNicknameViewController: SetNicknameViewDelegate {
     func setImageButtonTapped() {
-        let selectImageVC = SelectImageViewController(state: state, profile: profile, image: image)
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .black
-        navigationItem.backBarButtonItem = backBarButtonItem
-        navigationController?.pushViewController(selectImageVC, animated: true)
+        let selectImageVC = SelectImageViewController(profile: profile, image: image)
+        moveNextVC(vc: selectImageVC)
     }
     
     func textFieldDidChange(_ sender: UITextField) {
@@ -109,11 +104,7 @@ extension SetNicknameViewController: SetNicknameViewDelegate {
         UserDefaultManager.nickname = profile.nickname
         UserDefaultManager.image = image
 
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-
         let rootView = TabBarViewController()
-        sceneDelegate?.window?.rootViewController = rootView
-        sceneDelegate?.window?.makeKeyAndVisible()
+        moveNextVCWithWindow(vc: rootView)
     }
 }

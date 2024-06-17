@@ -52,11 +52,7 @@ extension SearchViewController: SearchRootViewDelegate {
 
     func searchWord(text: String) {
         let resultVC = ResultViewController()
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButtonItem.tintColor = .black
-        navigationItem.backBarButtonItem = backBarButtonItem
-        resultVC.searchWord = text
-        navigationController?.pushViewController(resultVC, animated: true)
+        moveNextVC(vc: resultVC)
     }
 
     func removeAllButtonTapped() {

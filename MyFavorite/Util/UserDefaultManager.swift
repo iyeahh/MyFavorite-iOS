@@ -8,6 +8,8 @@
 import Foundation
 
 final class UserDefaultManager {
+    private init() { }
+
     @UserDefault(key: "image", reset: false)
     static var image: Int?
 
@@ -37,4 +39,12 @@ final class UserDefaultManager {
 
     @UserDefault(key: "joinDate", reset: true)
     static var resetJoinDate: String?
+
+    static func removeAll() {
+        let _ = UserDefaultManager.resetImage
+        let _ = UserDefaultManager.resetNickname
+        let _ = UserDefaultManager.resetJoinDate
+        let _ = UserDefaultManager.resetSearch
+        let _ = UserDefaultManager.resetIsLike
+    }
 }
