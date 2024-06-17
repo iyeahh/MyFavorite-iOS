@@ -10,8 +10,8 @@ import Foundation
 enum ResultSort: String, CaseIterable {
     case accuracy = "sim"
     case date = "date"
-    case highPrice = "asc"
-    case lowPrice = "dsc"
+    case highPrice = "dsc"
+    case lowPrice = "asc"
 
     var buttonTitle: String {
         switch self {

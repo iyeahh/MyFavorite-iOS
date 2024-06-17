@@ -29,7 +29,6 @@ final class DetailViewController: UIViewController {
 extension DetailViewController {
     private func configureNavi() {
         navigationItem.title = naviTitle
-        self.navigationController?.navigationBar.tintColor = .black
 
         let image = getImage()
         let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
@@ -43,9 +42,9 @@ extension DetailViewController {
             str == productId
         }
         if removedArray.count == 0 {
-            return Constant.Image.Icon.likeUnselected
+            return Constant.Image.Icon.likeUnselected?.withRenderingMode(.alwaysOriginal)
         } else {
-            return Constant.Image.Icon.likeSelected
+            return Constant.Image.Icon.likeSelected?.withRenderingMode(.alwaysOriginal)
         }
     }
 }
