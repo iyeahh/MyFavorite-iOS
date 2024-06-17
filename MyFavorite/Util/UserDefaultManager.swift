@@ -40,6 +40,14 @@ final class UserDefaultManager {
     @UserDefault(key: "joinDate", reset: true)
     static var resetJoinDate: String?
 
+    static var likeCount: String {
+        guard let isLikeList = UserDefaultManager.isLike else {
+            return "0 \(Constant.LiteralString.Setting.likeCount)"
+        }
+        let array = isLikeList.makeArray
+        return "\(array.count)" + "\(Constant.LiteralString.Setting.likeCount)"
+    }
+
     static func removeAll() {
         let _ = UserDefaultManager.resetImage
         let _ = UserDefaultManager.resetNickname
@@ -77,5 +85,13 @@ final class UserDefaultManager {
             }
             UserDefaultManager.isLike = removedArray.joined(separator: " ")
         }
+    }
+
+    static func getUserInfo() -> UserInfo? {
+        guard let image = UserDefaultManager.image,
+              let nickname = UserDefaultManager.nickname,
+              let joinDate = UserDefaultManager.joinDate else { return nil }
+
+        return UserInfo(image: image, nickname: nickname, joinDate: joinDate)
     }
 }

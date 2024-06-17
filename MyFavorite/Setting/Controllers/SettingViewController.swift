@@ -8,7 +8,7 @@
 import UIKit
 
 final class SettingViewController: UIViewController {
-    lazy var userInfo = getUserInfo() {
+    private var userInfo = UserDefaultManager.getUserInfo() {
         didSet {
             rootView.userInfo = userInfo
         }
@@ -23,12 +23,13 @@ final class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavi()
+        userInfo = UserDefaultManager.getUserInfo()
         rootView.settingRootViewDelegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userInfo = getUserInfo()
+        userInfo = UserDefaultManager.getUserInfo()
     }
 
     private func configureNavi() {
@@ -36,39 +37,14 @@ final class SettingViewController: UIViewController {
     }
 }
 
-extension SettingViewController {
-    private func getUserInfo() -> UserInfo? {
-        guard let image = UserDefaultManager.image,
-              let nickname = UserDefaultManager.nickname,
-              let joinDate = UserDefaultManager.joinDate else { return nil }
-
-        return UserInfo(image: image, nickname: nickname, joinDate: joinDate)
-    }
-}
-
 extension SettingViewController: SettingRootViewDelegate {
     func selectCell(index: Int) {
-        let alert = UIAlertController(
-            title: Constant.LiteralString.Alert.Title.alert.rawValue,
-            message: Constant.LiteralString.Alert.message,
-            preferredStyle: .alert)
-
-        let confirm = UIAlertAction(
-            title: Constant.LiteralString.Alert.Title.confirm.rawValue,
-            style: .default,
-            handler: {_ in 
-                self.confirmButtonTapped()
-            })
-
-        let cancel = UIAlertAction(
-            title: Constant.LiteralString.Alert.Title.cancel.rawValue,
-            style: .cancel,
-            handler: nil)
-
-        alert.addAction(cancel)
-        alert.addAction(confirm)
-
-        present(alert, animated: true)
+        if index == 4 {
+            guard let alert = userInfo?.makeAelrt(confirmButtonTapped: confirmButtonTapped) else { return }
+            present(alert, animated: true)
+        } else {
+            return
+        }
     }
 
     private func confirmButtonTapped() {

@@ -17,6 +17,7 @@ final class SettingRootView: UIView {
     var userInfo: UserInfo? {
         didSet {
             configureUserInfo()
+            settingTableView.reloadData()
         }
     }
 
@@ -205,7 +206,7 @@ extension SettingRootView: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let data = settingList[indexPath.row]
-        cell.setData(index: indexPath.row, count: userInfo?.likeCount, text: data)
+        cell.setData(index: indexPath.row, count: UserDefaultManager.likeCount, text: data)
         cell.selectionStyle = .none
         return cell
     }
