@@ -51,7 +51,7 @@ extension SettingViewController: SettingRootViewDelegate {
         UserDefaultManager.removeAll()
 
         let onBoardingVC = OnBoardingViewController()
-        moveNextVCWithWindow(vc: onBoardingVC)
+        moveNextVCWithWindow(needNavi: true, vc: onBoardingVC)
     }
 
     func editButtonTapped() {

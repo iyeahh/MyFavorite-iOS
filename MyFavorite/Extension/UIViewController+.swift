@@ -15,10 +15,15 @@ extension UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
 
-    func moveNextVCWithWindow(vc: UIViewController) {
+    func moveNextVCWithWindow(needNavi: Bool, vc: UIViewController) {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        sceneDelegate?.window?.rootViewController = vc
+        if needNavi {
+            let rootVC = UINavigationController(rootViewController: vc)
+            sceneDelegate?.window?.rootViewController = rootVC
+        } else {
+            sceneDelegate?.window?.rootViewController = vc
+        }
         sceneDelegate?.window?.makeKeyAndVisible()
     }
 }

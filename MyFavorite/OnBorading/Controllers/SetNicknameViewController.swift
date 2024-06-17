@@ -105,6 +105,6 @@ extension SetNicknameViewController: SetNicknameViewDelegate {
         UserDefaultManager.image = image
 
         let rootView = TabBarViewController()
-        moveNextVCWithWindow(vc: rootView)
+        moveNextVCWithWindow(needNavi: false, vc: rootView)
     }
 }
