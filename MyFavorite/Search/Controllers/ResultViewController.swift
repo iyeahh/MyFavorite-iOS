@@ -49,6 +49,11 @@ final class ResultViewController: UIViewController {
         rootView.searchResultRootViewDelegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+
+    }
+
     private func configureNavi() {
         navigationItem.title = "\(searchWord)"
     }
@@ -131,9 +136,11 @@ extension ResultViewController: SearchResultRootViewDelegate {
 
     func selectedCell(index: Int) {
         let detailVC = DetailViewController()
-        detailVC.productId = result[index].productId
-        detailVC.url = result[index].link.removeSlash
-        detailVC.naviTitle = result[index].title
+        let item = result[index]
+        detailVC.productId = item.productId
+        detailVC.url = item.link.removeSlash
+        detailVC.naviTitle = item.title
+        detailVC.isLike = item.isLiked
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         backBarButtonItem.tintColor = .black
         navigationItem.backBarButtonItem = backBarButtonItem

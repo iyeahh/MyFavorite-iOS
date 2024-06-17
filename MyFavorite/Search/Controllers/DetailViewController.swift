@@ -11,6 +11,12 @@ final class DetailViewController: UIViewController {
     var naviTitle: String = ""
     var productId: String = ""
     var url: String = ""
+    var isLike: Bool = false {
+        didSet {
+            let image = getImage()
+            setNaviBarButtonImage(image: image)
+        }
+    }
 
     private lazy var rootView = SearchDetailRootView(urlString: self.url)
 
@@ -29,22 +35,33 @@ final class DetailViewController: UIViewController {
 extension DetailViewController {
     private func configureNavi() {
         navigationItem.title = naviTitle
-
-        let image = getImage()
-        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = barButtonItem
     }
 
     private func getImage() -> UIImage? {
-        guard let isLikeString = UserDefaultManager.isLike else { return nil }
-        let array = isLikeString.makeArray
-        let removedArray = array.filter { str in
-            str == productId
-        }
-        if removedArray.count == 0 {
-            return Constant.Image.Icon.likeUnselected?.withRenderingMode(.alwaysOriginal)
-        } else {
+        if isLike {
             return Constant.Image.Icon.likeSelected?.withRenderingMode(.alwaysOriginal)
+        } else {
+            return Constant.Image.Icon.likeUnselected?.withRenderingMode(.alwaysOriginal)
+        }
+    }
+
+    private func setNaviBarButtonImage(image: UIImage?) {
+        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(likeButtonTapped))
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
+
+    @objc private func likeButtonTapped() {
+        guard let isLikeString = UserDefaultManager.isLike else { return }
+        isLike.toggle()
+
+        if isLike {
+            UserDefaultManager.isLike = isLikeString + " " + productId
+        } else {
+            let array = isLikeString.makeArray
+            let removedArray = array.filter { str in
+                str != productId
+            }
+            UserDefaultManager.isLike = removedArray.joined(separator: " ")
         }
     }
 }
