@@ -33,23 +33,4 @@ final class SearchResult {
             )
         }
     }
-
-    func likeButtonTapped(itemInfo: ItemInfo) {
-        if UserDefaultManager.isLike == nil || UserDefaultManager.isLike == "" {
-            UserDefaultManager.isLike = "빈배열아님"
-        }
-
-        guard let isLikeString = UserDefaultManager.isLike else { return }
-
-
-        if itemInfo.isLiked {
-            let array = isLikeString.makeArray
-            let removedArray = array.filter { str in
-                str != itemInfo.productId
-            }
-            UserDefaultManager.isLike = removedArray.joined(separator: " ")
-        } else {
-            UserDefaultManager.isLike = isLikeString + " " + itemInfo.productId
-        }
-    }
 }

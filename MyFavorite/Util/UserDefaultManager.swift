@@ -60,4 +60,22 @@ final class UserDefaultManager {
             return true
         }
     }
+
+    static func removeIsLike(isLike: Bool, productId: String) {
+        if UserDefaultManager.isLike == nil || UserDefaultManager.isLike == "" {
+            UserDefaultManager.isLike = "빈배열아님"
+        }
+
+        guard let isLikeString = UserDefaultManager.isLike else { return }
+        
+        if isLike {
+            UserDefaultManager.isLike = isLikeString + " " + productId
+        } else {
+            let array = isLikeString.makeArray
+            let removedArray = array.filter { str in
+                str != productId
+            }
+            UserDefaultManager.isLike = removedArray.joined(separator: " ")
+        }
+    }
 }

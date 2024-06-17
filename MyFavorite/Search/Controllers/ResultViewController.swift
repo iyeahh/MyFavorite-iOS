@@ -82,7 +82,7 @@ extension ResultViewController {
 extension ResultViewController: SearchResultRootViewDelegate {
     func isLikeCallBack(index: Int) {
         let itemInfo = result[index]
-        searchResult.likeButtonTapped(itemInfo: itemInfo)
+        UserDefaultManager.removeIsLike(isLike: !itemInfo.isLiked, productId: itemInfo.productId)
         result[index].isLiked.toggle()
     }
 
@@ -95,11 +95,10 @@ extension ResultViewController: SearchResultRootViewDelegate {
     }
 
     func selectedCell(index: Int) {
-        let detailVC = DetailViewController()
         let item = result[index]
-        detailVC.productId = item.productId
-        detailVC.url = item.link.removeSlash
-        detailVC.naviTitle = item.title
+        let detailResult = DetailResult(naviTitle: item.title, productId: item.productId, url: item.link.removeSlash)
+        let detailVC = DetailViewController(detailResult: detailResult, isLike: item.isLiked)
+
         detailVC.isLike = item.isLiked
         moveNextVC(vc: detailVC)
     }
