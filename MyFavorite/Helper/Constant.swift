@@ -19,6 +19,7 @@ enum Constant {
 
     enum Font {
         static let title = UIFont(name: "Optima-ExtraBlack", size: 40)
+        static let nickname = UIFont.systemFont(ofSize: 19, weight: .black)
         static let bold16 = UIFont.boldSystemFont(ofSize: 16)
         static let bold15 = UIFont.boldSystemFont(ofSize: 15)
         static let bold14 = UIFont.boldSystemFont(ofSize: 14)
@@ -131,6 +132,16 @@ enum Constant {
                 case display
                 case sort
             }
+        }
+
+        enum Setting: String {
+            static let likeCount = "개의 상품"
+
+            case shoppingList = "나의 장바구니 목록"
+            case question = "자주 묻는 질문"
+            case inquiry = "1:1 문의"
+            case alarm = "알림 설정"
+            case cancelMembership = "탈퇴하기"
         }
     }
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7611661F2C1FFC0200661581 /* SettingRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611661E2C1FFC0200661581 /* SettingRootView.swift */; };
+		761166212C1FFC1600661581 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166202C1FFC1600661581 /* SettingTableViewCell.swift */; };
+		761166232C200BD600661581 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166222C200BD600661581 /* Date+.swift */; };
+		761166252C200E5400661581 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166242C200E5400661581 /* UserInfo.swift */; };
 		7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */; };
 		7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */; };
 		7658D0052C1BDCC60038FAB0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7658D0042C1BDCC60038FAB0 /* SnapKit */; };
@@ -54,6 +58,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7611661E2C1FFC0200661581 /* SettingRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRootView.swift; sourceTree = "<group>"; };
+		761166202C1FFC1600661581 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		761166222C200BD600661581 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		761166242C200E5400661581 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorButton.swift; sourceTree = "<group>"; };
 		7658D0062C1BDEB90038FAB0 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +242,8 @@
 		767E5D012C1C67880045C2AF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7611661E2C1FFC0200661581 /* SettingRootView.swift */,
+				761166202C1FFC1600661581 /* SettingTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +251,7 @@
 		767E5D022C1C678D0045C2AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				761166242C200E5400661581 /* UserInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,6 +308,7 @@
 				7691B1282C1AEAC80091C42B /* UIColor+.swift */,
 				7691B12A2C1AF0680091C42B /* UIImage+.swift */,
 				767E5CDE2C1C0F3B0045C2AF /* String+.swift */,
+				761166222C200BD600661581 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -442,6 +454,8 @@
 				767E5CEC2C1C24030045C2AF /* SelectImageViewController.swift in Sources */,
 				7691B10A2C1AE5280091C42B /* AppDelegate.swift in Sources */,
 				7697EB9B2C1D7D61005D08E0 /* ResultViewController.swift in Sources */,
+				7611661F2C1FFC0200661581 /* SettingRootView.swift in Sources */,
+				761166232C200BD600661581 /* Date+.swift in Sources */,
 				7697EB952C1D713D005D08E0 /* SearchResultRootView.swift in Sources */,
 				767E5D0A2C1C74790045C2AF /* ReuseIdentifierProtocol.swift in Sources */,
 				767E5CFE2C1C67300045C2AF /* TabBarViewController.swift in Sources */,
@@ -456,6 +470,7 @@
 				767E5CD62C1BE7830045C2AF /* BarView.swift in Sources */,
 				76ADE37C2C1F1F0200CC23CB /* DetailViewController.swift in Sources */,
 				767E5D062C1C68EA0045C2AF /* SearchRootView.swift in Sources */,
+				761166212C1FFC1600661581 /* SettingTableViewCell.swift in Sources */,
 				767E5CDF2C1C0F3B0045C2AF /* String+.swift in Sources */,
 				767E5CFC2C1C4B690045C2AF /* SearchViewController.swift in Sources */,
 				76ADE37A2C1F1D5400CC23CB /* SearchDetailRootView.swift in Sources */,
@@ -468,6 +483,7 @@
 				76F58E612C1EDA4000E038B5 /* ResultSort.swift in Sources */,
 				767E5CF62C1C3EF80045C2AF /* UserDefaultManager.swift in Sources */,
 				7691B1262C1AE9460091C42B /* Constant.swift in Sources */,
+				761166252C200E5400661581 /* UserInfo.swift in Sources */,
 				7697EBAA2C1EA6D6005D08E0 /* APIKey.swift in Sources */,
 				767E5CE62C1C19910045C2AF /* SelectImageRootView.swift in Sources */,
 				767E5D082C1C74500045C2AF /* SearchWordTableViewCell.swift in Sources */,

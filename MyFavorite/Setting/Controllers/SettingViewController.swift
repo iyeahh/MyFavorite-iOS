@@ -7,23 +7,31 @@
 
 import UIKit
 
-class SettingViewController: UIViewController {
+final class SettingViewController: UIViewController {
+    lazy var userInfo = getUserInfo()
+    private lazy var rootView = SettingRootView(userInfo: userInfo)
+
+    override func loadView() {
+        super.loadView()
+        view = rootView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureNavi()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureNavi() {
+        navigationItem.title = Constant.LiteralString.Title.NavigationBar.setting.rawValue
     }
-    */
+}
 
+extension SettingViewController {
+    private func getUserInfo() -> UserInfo? {
+        guard let image = UserDefaultManager.image,
+              let nickname = UserDefaultManager.nickname,
+              let joinDate = UserDefaultManager.joinDate else { return nil }
+
+        return UserInfo(image: image, nickname: nickname, joinDate: joinDate)
+    }
 }

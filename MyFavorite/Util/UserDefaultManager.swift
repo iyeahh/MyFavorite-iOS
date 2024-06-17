@@ -31,4 +31,10 @@ final class UserDefaultManager {
 
     @UserDefault(key: "isLike", reset: true)
     static var resetIsLike: String?
+
+    @UserDefault(key: "joinDate", reset: false)
+    static var joinDate: String?
+
+    @UserDefault(key: "joinDate", reset: true)
+    static var resetJoinDate: String?
 }

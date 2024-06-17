@@ -61,6 +61,10 @@ extension SetNicknameViewController: SetNicknameViewDelegate {
         guard profile.isPossible else {
             return
         }
+
+        let dataString = Date.dateString
+
+        UserDefaultManager.joinDate = dataString
         UserDefaultManager.nickname = profile.nickname
         UserDefaultManager.image = image
 

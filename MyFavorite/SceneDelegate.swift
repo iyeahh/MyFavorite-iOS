@@ -16,10 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
 
-//        let onBoardingVC = UINavigationController(rootViewController: OnBoardingViewController())
-//        window?.rootViewController = onBoardingVC
-        let searchVC = UINavigationController(rootViewController: SearchViewController())
-        window?.rootViewController = searchVC
+        let onBoardingVC = UINavigationController(rootViewController: OnBoardingViewController())
+        window?.rootViewController = onBoardingVC
         window?.makeKeyAndVisible()
     }
 
