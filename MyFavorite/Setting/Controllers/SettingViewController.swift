@@ -40,6 +40,7 @@ final class SettingViewController: UIViewController {
 extension SettingViewController: SettingRootViewDelegate {
     func selectCell(index: Int) {
         if index == 4 {
+            print(userInfo)
             guard let alert = userInfo?.makeAelrt(confirmButtonTapped: confirmButtonTapped) else { return }
             present(alert, animated: true)
         } else {
@@ -49,6 +50,7 @@ extension SettingViewController: SettingRootViewDelegate {
 
     private func confirmButtonTapped() {
         UserDefaultManager.removeAll()
+        print(UserDefaultManager.joinDate)
 
         let onBoardingVC = OnBoardingViewController()
         moveNextVCWithWindow(needNavi: true, vc: onBoardingVC)

@@ -94,4 +94,10 @@ final class UserDefaultManager {
 
         return UserInfo(image: image, nickname: nickname, joinDate: joinDate)
     }
+
+    static func isLogined() -> Bool {
+        guard UserDefaultManager.image != nil &&
+              UserDefaultManager.nickname != nil else { return false }
+        return true
+    }
 }
