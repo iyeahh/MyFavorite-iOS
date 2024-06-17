@@ -143,5 +143,15 @@ enum Constant {
             case alarm = "알림 설정"
             case cancelMembership = "탈퇴하기"
         }
+
+        enum Alert {
+            static let message = "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴 하시겠습니까?"
+
+            enum Title: String {
+                case alert = "탈퇴하기"
+                case confirm = "확인"
+                case cancel = "취소"
+            }
+        }
     }
 }

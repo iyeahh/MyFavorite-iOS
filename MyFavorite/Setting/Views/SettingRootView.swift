@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol SettingRootViewDelegate: AnyObject {
+    func selectCell(index: Int)
+}
+
 final class SettingRootView: UIView {
     var userInfo: UserInfo?
 
@@ -73,6 +77,8 @@ final class SettingRootView: UIView {
         let view = BarView(color: Constant.Color.secondaryLightGray)
         return view
     }()
+
+    weak var settingRootViewDelegate: SettingRootViewDelegate?
 
     init(userInfo: UserInfo?) {
         self.userInfo = userInfo
@@ -187,5 +193,9 @@ extension SettingRootView: UITableViewDelegate, UITableViewDataSource {
         cell.setData(index: indexPath.row, count: userInfo?.likeCount, text: data)
         cell.selectionStyle = .none
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        settingRootViewDelegate?.selectCell(index: indexPath.row)
     }
 }
