@@ -9,13 +9,13 @@ import Foundation
 
 final class SearchWord {
     func setSearchWordList(text: String) -> [String] {
-        guard let searchWord = UserDefaultManager.search else {
-            UserDefaultManager.search = text
-            return UserDefaultManager.search?.makeArray ?? []
+        guard UserDefaultManager.search != nil else {
+            UserDefaultManager.search = [text]
+            return UserDefaultManager.search ?? []
         }
 
-        UserDefaultManager.search = text + " " + searchWord
-        return UserDefaultManager.search?.makeArray ?? []
+        UserDefaultManager.search?.insert(text, at: 0)
+        return UserDefaultManager.search ?? []
     }
 
     func removeAllWord() -> [String] {
@@ -24,14 +24,8 @@ final class SearchWord {
     }
 
     func removeWord(index: Int) -> [String] {
-        guard let searchWords = UserDefaultManager.search else { return [] }
-        var array = searchWords.makeArray
-        if array.count == 1 {
-            let _ = UserDefaultManager.resetSearch
-            return []
-        }
-        array.remove(at: index)
-        UserDefaultManager.search = array.joined(separator: " ")
-        return UserDefaultManager.search?.makeArray ?? []
+        guard UserDefaultManager.search != nil else { return [] }
+        UserDefaultManager.search?.remove(at: index)
+        return UserDefaultManager.search ?? []
     }
 }

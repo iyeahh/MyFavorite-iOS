@@ -29,16 +29,16 @@ final class UserDefaultManager {
     static var resetNickname: String?
 
     @UserDefault(key: "search", reset: false)
-    static var search: String?
+    static var search: [String]?
 
     @UserDefault(key: "search", reset: true)
-    static var resetSearch: String?
+    static var resetSearch: [String]?
 
     @UserDefault(key: "isLike", reset: false)
-    static var isLike: String?
+    static var isLike: [String]?
 
     @UserDefault(key: "isLike", reset: true)
-    static var resetIsLike: String?
+    static var resetIsLike: [String]?
 
     @UserDefault(key: "joinDate", reset: false)
     static var joinDate: String?
@@ -50,8 +50,7 @@ final class UserDefaultManager {
         guard let isLikeList = UserDefaultManager.isLike else {
             return "0 \(Constant.LiteralString.Setting.likeCount)"
         }
-        let array = isLikeList.makeArray
-        return "\(array.count)" + "\(Constant.LiteralString.Setting.likeCount)"
+        return "\(isLikeList.count)" + "\(Constant.LiteralString.Setting.likeCount)"
     }
 
     static func removeAll() {
@@ -64,8 +63,7 @@ final class UserDefaultManager {
 
     static func checkIsLike(productId: String) -> Bool {
         guard let isLikeString = UserDefaultManager.isLike else { return false }
-        let array = isLikeString.makeArray
-        let removedArray = array.filter { str in
+        let removedArray = isLikeString.filter { str in
             str == productId
         }
         if removedArray.count == 0 {
@@ -76,25 +74,20 @@ final class UserDefaultManager {
     }
 
     static func likeButtonTapped(isLike: Bool, productId: String) {
-        if UserDefaultManager.isLike == nil {
-            UserDefaultManager.isLike = productId
-            return
-        }
-
-        guard let isLikeString = UserDefaultManager.isLike else { return }
-        
         if isLike {
-            UserDefaultManager.isLike = isLikeString + " " + productId
-        } else {
-            let array = isLikeString.makeArray
-            if array.count == 1 {
-                let _ = UserDefaultManager.resetIsLike
-            } else {
-                let removedArray = array.filter { str in
-                    str != productId
-                }
-                UserDefaultManager.isLike = removedArray.joined(separator: " ")
+            guard UserDefaultManager.isLike != nil else {
+                UserDefaultManager.isLike = [productId]
+                return
             }
+            UserDefaultManager.isLike?.append(productId)
+        } else {
+            guard let isLikeList = UserDefaultManager.isLike else {
+                return
+            }
+            let removedArray = isLikeList.filter { str in
+                str != productId
+            }
+            UserDefaultManager.isLike = removedArray
         }
     }
 
