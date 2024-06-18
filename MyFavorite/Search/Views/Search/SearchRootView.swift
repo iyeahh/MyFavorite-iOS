@@ -198,6 +198,7 @@ extension SearchRootView {
         searchWordTableView.delegate = self
         searchWordTableView.dataSource = self
         searchWordTableView.rowHeight = 40
+        searchWordTableView.keyboardDismissMode = .onDrag
         searchWordTableView.register(SearchWordTableViewCell.self, forCellReuseIdentifier: SearchWordTableViewCell.identifier)
     }
 
