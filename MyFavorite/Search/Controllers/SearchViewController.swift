@@ -8,8 +8,6 @@
 import UIKit
 
 final class SearchViewController: UIViewController {
-    let searchWord = SearchWord()
-
     private var searchWordList: [String] = UserDefaultManager.searchWordList ?? [] {
         didSet {
             rootView.searchWordList = searchWordList
@@ -37,11 +35,11 @@ final class SearchViewController: UIViewController {
 
 extension SearchViewController: SearchRootViewDelegate {
     func removeWordButtonTapped(index: Int) {
-        searchWordList = searchWord.removeWord(index: index)
+        searchWordList = UserDefaultManager.removeWord(index: index)
     }
     
     func searchButtonTapped(text: String) {
-        searchWordList = searchWord.setSearchWordList(text: text)
+        searchWordList = UserDefaultManager.setSearchWordList(text: text)
         searchWord(text: text)
     }
 
@@ -57,6 +55,6 @@ extension SearchViewController: SearchRootViewDelegate {
     }
 
     func removeAllButtonTapped() {
-        searchWordList = searchWord.removeAllWord()
+        searchWordList = UserDefaultManager.removeAllWord()
     }
 }

@@ -104,7 +104,7 @@ extension UserDefaultManager {
         return true
     }
 
-    func setSearchWordList(text: String) -> [String] {
+    static func setSearchWordList(text: String) -> [String] {
         guard UserDefaultManager.searchWordList != nil else {
             UserDefaultManager.searchWordList = [text]
             return UserDefaultManager.searchWordList ?? []
@@ -114,12 +114,12 @@ extension UserDefaultManager {
         return UserDefaultManager.searchWordList ?? []
     }
 
-    func removeAllWord() -> [String] {
+    static func removeAllWord() -> [String] {
         let _ = UserDefaultManager.resetSearchWordList
         return []
     }
 
-    func removeWord(index: Int) -> [String] {
+    static func removeWord(index: Int) -> [String] {
         guard UserDefaultManager.searchWordList != nil else { return [] }
         UserDefaultManager.searchWordList?.remove(at: index)
         return UserDefaultManager.searchWordList ?? []

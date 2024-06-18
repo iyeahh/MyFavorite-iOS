@@ -45,7 +45,6 @@
 		7691B1262C1AE9460091C42B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B1252C1AE9460091C42B /* Constant.swift */; };
 		7691B1292C1AEAC80091C42B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B1282C1AEAC80091C42B /* UIColor+.swift */; };
 		7691B12B2C1AF0680091C42B /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691B12A2C1AF0680091C42B /* UIImage+.swift */; };
-		7697EB912C1D1EA2005D08E0 /* SearchWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB902C1D1EA2005D08E0 /* SearchWord.swift */; };
 		7697EB952C1D713D005D08E0 /* SearchResultRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB942C1D713D005D08E0 /* SearchResultRootView.swift */; };
 		7697EB972C1D714E005D08E0 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB962C1D714E005D08E0 /* SearchResultCollectionViewCell.swift */; };
 		7697EB992C1D75DD005D08E0 /* GrayColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697EB982C1D75DD005D08E0 /* GrayColorButton.swift */; };
@@ -100,7 +99,6 @@
 		7691B1252C1AE9460091C42B /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		7691B1282C1AEAC80091C42B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		7691B12A2C1AF0680091C42B /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
-		7697EB902C1D1EA2005D08E0 /* SearchWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWord.swift; sourceTree = "<group>"; };
 		7697EB942C1D713D005D08E0 /* SearchResultRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRootView.swift; sourceTree = "<group>"; };
 		7697EB962C1D714E005D08E0 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		7697EB982C1D75DD005D08E0 /* GrayColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayColorButton.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 		767E5CFA2C1C4B520045C2AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7697EB902C1D1EA2005D08E0 /* SearchWord.swift */,
 				76F58E602C1EDA4000E038B5 /* ResultSort.swift */,
 				76F58E642C1F00E700E038B5 /* ItemInfo.swift */,
 				7611662E2C20385E00661581 /* SearchResult.swift */,
@@ -476,7 +473,6 @@
 				7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */,
 				7697EB992C1D75DD005D08E0 /* GrayColorButton.swift in Sources */,
 				767E5CD82C1BEE9E0045C2AF /* SetNicknameViewController.swift in Sources */,
-				7697EB912C1D1EA2005D08E0 /* SearchWord.swift in Sources */,
 				7697EB972C1D714E005D08E0 /* SearchResultCollectionViewCell.swift in Sources */,
 				7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */,
 				767E5CD42C1BE4FB0045C2AF /* SetNicknameView.swift in Sources */,
