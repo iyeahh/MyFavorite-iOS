@@ -125,7 +125,7 @@ extension UserDefaultManager {
         return UserDefaultManager.searchWordList ?? []
     }
 
-    static func createUserInfo(nickname: String?) {
+    static func createUserInfo(nickname: String?, image: Int) {
         let dataString = Date.dateString
 
         UserDefaultManager.joinDate = dataString
@@ -134,7 +134,7 @@ extension UserDefaultManager {
         let _ = UserDefaultManager.resetTempImage
     }
 
-    static func editUserInfo(nickname: String?) {
+    static func editUserInfo(nickname: String?, image: Int) {
         UserDefaultManager.nickname = nickname
         UserDefaultManager.image = image
         let _ = UserDefaultManager.resetTempImage

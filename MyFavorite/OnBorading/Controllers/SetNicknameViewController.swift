@@ -70,7 +70,7 @@ final class SetNicknameViewController: UIViewController {
         guard profile.isPossible || nickname == UserDefaultManager.nickname else {
             return
         }
-        UserDefaultManager.editUserInfo(nickname: profile.nickname)
+        UserDefaultManager.editUserInfo(nickname: profile.nickname, image: image)
         navigationController?.popViewController(animated: true)
     }
 }
@@ -91,7 +91,8 @@ extension SetNicknameViewController: SetNicknameViewDelegate {
         guard profile.isPossible else {
             return
         }
-        UserDefaultManager.createUserInfo(nickname: profile.nickname)
+        UserDefaultManager.createUserInfo(nickname: profile.nickname, image: image)
+
         let rootView = TabBarViewController()
         moveNextVCWithWindow(needNavi: false, vc: rootView)
     }
