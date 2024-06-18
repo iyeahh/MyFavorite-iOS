@@ -83,6 +83,7 @@ final class SetNicknameView: UIView {
     private let descriptionLabel = {
         let label = UILabel()
         label.textColor = Constant.Color.accent
+        label.text = Constant.LiteralString.Nickname.incorrectNumber
         label.font = Constant.Font.system13
         return label
     }()
