@@ -55,6 +55,14 @@ final class ResultViewController: UIViewController {
         rootView.searchResultRootViewDelegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        guard result.count > 0 else { return }
+        let itemInfo = result[searchResult.index]
+        let isLike = UserDefaultManager.checkIsLike(productId: itemInfo.productId)
+        result[searchResult.index].isLiked = isLike
+        rootView.updateIsLike(index: searchResult.index, isLike: isLike)
+    }
+
     private func configureNavi() {
         navigationItem.title = "\(searchResult.searchWord)"
     }
@@ -81,6 +89,7 @@ extension ResultViewController {
 
 extension ResultViewController: SearchResultRootViewDelegate {
     func isLikeCallBack(index: Int) {
+        searchResult.index = index
         let itemInfo = result[index]
         UserDefaultManager.likeButtonTapped(isLike: !itemInfo.isLiked, productId: itemInfo.productId)
         result[index].isLiked.toggle()
@@ -95,6 +104,7 @@ extension ResultViewController: SearchResultRootViewDelegate {
     }
 
     func selectedCell(index: Int) {
+        searchResult.index = index
         let item = result[index]
         let detailResult = DetailResult(naviTitle: item.title, productId: item.productId, url: item.link.removeSlash)
         let detailVC = DetailViewController(detailResult: detailResult, isLike: item.isLiked)

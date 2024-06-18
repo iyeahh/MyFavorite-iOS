@@ -11,6 +11,7 @@ final class SearchResult {
     var searchWord: String
     var isEnd = false
     var total = 0
+    var index = 0
 
     var totalString: String {
         total.formatted() + Constant.LiteralString.Search.SearchWord.resultNumber

@@ -232,3 +232,10 @@ extension SearchResultRootView: UICollectionViewDataSourcePrefetching {
         }
     }
 }
+
+extension SearchResultRootView {
+    func updateIsLike(index: Int, isLike: Bool) {
+        items[index].isLiked = isLike
+        resultCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+    }
+}
