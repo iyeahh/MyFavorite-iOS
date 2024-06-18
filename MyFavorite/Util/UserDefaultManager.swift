@@ -16,6 +16,12 @@ final class UserDefaultManager {
     @UserDefault(key: "image", reset: true)
     static var resetImage: Int?
 
+    @UserDefault(key: "tempImage", reset: false)
+    static var tempImage: Int?
+
+    @UserDefault(key: "tempImage", reset: true)
+    static var resetTempImage: Int?
+
     @UserDefault(key: "nickname", reset: false)
     static var nickname: String?
 

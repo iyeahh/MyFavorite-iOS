@@ -31,6 +31,24 @@ final class Profile {
         return num
     }
 
+    func setImage() -> Int {
+        guard state == .edit else {
+            guard let tempImage = UserDefaultManager.tempImage else {
+                return randomImage()
+            }
+            let _ = UserDefaultManager.resetTempImage
+            return tempImage
+        }
+        guard let tempImage = UserDefaultManager.tempImage else {
+            guard let savedImage = UserDefaultManager.image else {
+                return 0
+            }
+            return savedImage
+        }
+        let _ = UserDefaultManager.resetTempImage
+        return tempImage
+    }
+
     func determineNickname(input: String?) -> String {
         var message = ""
 

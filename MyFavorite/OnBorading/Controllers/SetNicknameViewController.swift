@@ -46,20 +46,17 @@ final class SetNicknameViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let savedImage = UserDefaultManager.image else {
-            image = profile.randomImage()
-            return
-        }
-        image = savedImage
-
+        image = profile.setImage()
         if profile.state == .edit {
-            nickname = UserDefaultManager.nickname
+            profile.nickname = UserDefaultManager.nickname
+            nickname = profile.nickname
         }
     }
 
     private func configureNavi() {
         if profile.state == .create {
             navigationItem.title = State.create.rawValue
+            let _ = UserDefaultManager.resetTempImage
         } else {
             navigationItem.title = State.edit.rawValue
 
@@ -70,12 +67,14 @@ final class SetNicknameViewController: UIViewController {
     }
 
     @objc private func saveButtonTapped() {
-        guard profile.isPossible else {
+        guard profile.isPossible || nickname == UserDefaultManager.nickname else {
             return
         }
 
         UserDefaultManager.nickname = profile.nickname
+        print(nickname)
         UserDefaultManager.image = image
+        let _ = UserDefaultManager.resetTempImage
 
         navigationController?.popViewController(animated: true)
     }
@@ -103,6 +102,7 @@ extension SetNicknameViewController: SetNicknameViewDelegate {
         UserDefaultManager.joinDate = dataString
         UserDefaultManager.nickname = profile.nickname
         UserDefaultManager.image = image
+        let _ = UserDefaultManager.resetTempImage
 
         let rootView = TabBarViewController()
         moveNextVCWithWindow(needNavi: false, vc: rootView)
