@@ -124,4 +124,19 @@ extension UserDefaultManager {
         UserDefaultManager.searchWordList?.remove(at: index)
         return UserDefaultManager.searchWordList ?? []
     }
+
+    static func createUserInfo(nickname: String?) {
+        let dataString = Date.dateString
+
+        UserDefaultManager.joinDate = dataString
+        UserDefaultManager.nickname = nickname
+        UserDefaultManager.image = image
+        let _ = UserDefaultManager.resetTempImage
+    }
+
+    static func editUserInfo(nickname: String?) {
+        UserDefaultManager.nickname = nickname
+        UserDefaultManager.image = image
+        let _ = UserDefaultManager.resetTempImage
+    }
 }
