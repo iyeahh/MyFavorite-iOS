@@ -22,8 +22,6 @@ final class OnBoardingViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let _ = UserDefaultManager.resetImage
-        let _ = UserDefaultManager.resetNickname
     }
 }
 

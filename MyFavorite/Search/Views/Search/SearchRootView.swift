@@ -187,7 +187,7 @@ extension SearchRootView {
 extension SearchRootView {
     private func configureUI() {
         backgroundColor = Constant.Color.secondary
-        if UserDefaultManager.search == nil {
+        if UserDefaultManager.searchWordList == nil {
             isEmptyWord(true)
         } else {
             isEmptyWord(false)

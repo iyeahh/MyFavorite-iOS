@@ -28,26 +28,28 @@ final class UserDefaultManager {
     @UserDefault(key: "nickname", reset: true)
     static var resetNickname: String?
 
-    @UserDefault(key: "search", reset: false)
-    static var search: [String]?
+    @UserDefault(key: "searchWordList", reset: false)
+    static var searchWordList: [String]?
 
-    @UserDefault(key: "search", reset: true)
-    static var resetSearch: [String]?
+    @UserDefault(key: "searchWordList", reset: true)
+    static var resetSearchWordList: [String]?
 
-    @UserDefault(key: "isLike", reset: false)
-    static var isLike: [String]?
+    @UserDefault(key: "isLikeList", reset: false)
+    static var isLikeList: [String]?
 
-    @UserDefault(key: "isLike", reset: true)
-    static var resetIsLike: [String]?
+    @UserDefault(key: "isLikeList", reset: true)
+    static var resetIsLikeList: [String]?
 
     @UserDefault(key: "joinDate", reset: false)
     static var joinDate: String?
 
     @UserDefault(key: "joinDate", reset: true)
     static var resetJoinDate: String?
+}
 
-    static var likeCount: String {
-        guard let isLikeList = UserDefaultManager.isLike else {
+extension UserDefaultManager {
+    static var isLikeListCount: String {
+        guard let isLikeList = UserDefaultManager.isLikeList else {
             return "0 \(Constant.LiteralString.Setting.likeCount)"
         }
         return "\(isLikeList.count)" + "\(Constant.LiteralString.Setting.likeCount)"
@@ -57,16 +59,16 @@ final class UserDefaultManager {
         let _ = UserDefaultManager.resetImage
         let _ = UserDefaultManager.resetNickname
         let _ = UserDefaultManager.resetJoinDate
-        let _ = UserDefaultManager.resetSearch
-        let _ = UserDefaultManager.resetIsLike
+        let _ = UserDefaultManager.resetSearchWordList
+        let _ = UserDefaultManager.resetIsLikeList
     }
 
     static func checkIsLike(productId: String) -> Bool {
-        guard let isLikeString = UserDefaultManager.isLike else { return false }
-        let removedArray = isLikeString.filter { str in
-            str == productId
+        guard let isLikeList = UserDefaultManager.isLikeList else { return false }
+        let array = isLikeList.filter { id in
+            id == productId
         }
-        if removedArray.count == 0 {
+        if array.count == 0 {
             return false
         } else {
             return true
@@ -74,20 +76,17 @@ final class UserDefaultManager {
     }
 
     static func likeButtonTapped(isLike: Bool, productId: String) {
+        guard let isLikeList = UserDefaultManager.isLikeList else {
+            UserDefaultManager.isLikeList = [productId]
+            return
+        }
         if isLike {
-            guard UserDefaultManager.isLike != nil else {
-                UserDefaultManager.isLike = [productId]
-                return
+            UserDefaultManager.isLikeList?.append(productId)
+        } else  {
+            let array = isLikeList.filter { id in
+                id != productId
             }
-            UserDefaultManager.isLike?.append(productId)
-        } else {
-            guard let isLikeList = UserDefaultManager.isLike else {
-                return
-            }
-            let removedArray = isLikeList.filter { str in
-                str != productId
-            }
-            UserDefaultManager.isLike = removedArray
+            UserDefaultManager.isLikeList = array
         }
     }
 
@@ -103,5 +102,26 @@ final class UserDefaultManager {
         guard UserDefaultManager.image != nil &&
               UserDefaultManager.nickname != nil else { return false }
         return true
+    }
+
+    func setSearchWordList(text: String) -> [String] {
+        guard UserDefaultManager.searchWordList != nil else {
+            UserDefaultManager.searchWordList = [text]
+            return UserDefaultManager.searchWordList ?? []
+        }
+
+        UserDefaultManager.searchWordList?.insert(text, at: 0)
+        return UserDefaultManager.searchWordList ?? []
+    }
+
+    func removeAllWord() -> [String] {
+        let _ = UserDefaultManager.resetSearchWordList
+        return []
+    }
+
+    func removeWord(index: Int) -> [String] {
+        guard UserDefaultManager.searchWordList != nil else { return [] }
+        UserDefaultManager.searchWordList?.remove(at: index)
+        return UserDefaultManager.searchWordList ?? []
     }
 }

@@ -206,7 +206,7 @@ extension SettingRootView: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let data = settingList[indexPath.row]
-        cell.setData(index: indexPath.row, count: UserDefaultManager.likeCount, text: data)
+        cell.setData(index: indexPath.row, count: UserDefaultManager.isLikeListCount, text: data)
         cell.selectionStyle = .none
         return cell
     }

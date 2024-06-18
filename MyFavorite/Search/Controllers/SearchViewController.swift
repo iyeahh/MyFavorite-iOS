@@ -10,7 +10,7 @@ import UIKit
 final class SearchViewController: UIViewController {
     let searchWord = SearchWord()
 
-    private var searchWordList: [String] = UserDefaultManager.search ?? [] {
+    private var searchWordList: [String] = UserDefaultManager.searchWordList ?? [] {
         didSet {
             rootView.searchWordList = searchWordList
         }
@@ -41,9 +41,7 @@ extension SearchViewController: SearchRootViewDelegate {
     }
     
     func searchButtonTapped(text: String) {
-        print("text \(text)")
         searchWordList = searchWord.setSearchWordList(text: text)
-        print(" \(searchWordList)")
         searchWord(text: text)
     }
 

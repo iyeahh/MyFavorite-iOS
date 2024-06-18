@@ -8,10 +8,6 @@
 import Foundation
 
 extension String {
-    var makeArray: [String] {
-        return self.components(separatedBy: " ")
-    }
-
     var makeInt: String? {
         guard let intString = Int(self) else { return nil }
         return "\(intString.formatted())"
