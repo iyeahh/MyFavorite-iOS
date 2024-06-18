@@ -27,6 +27,10 @@ final class SearchViewController: UIViewController {
         rootView.searchRootViewDelegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        configureNavi()
+    }
+
     private func configureNavi() {
         guard let nickname = UserDefaultManager.nickname else { return }
         navigationItem.title = "\(nickname)" + Constant.LiteralString.Title.NavigationBar.meaningOut.rawValue
