@@ -9,19 +9,19 @@ import UIKit
 
 final class Profile {
     let imageList: [Int] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-    var nickname: String?
     var state: State
 
-    var isPossible: Bool {
+    init(state: State) {
+        self.state = state
+    }
+
+    func isPossible(nickname: String?) -> Bool {
+        guard let nickname = nickname else { return false }
         let message = Constant.LiteralString.Nickname.possible
         guard determineNickname(input: nickname) == message else {
             return false
         }
         return true
-    }
-
-    init(state: State) {
-        self.state = state
     }
 
     func randomImage() -> Int {

@@ -48,8 +48,7 @@ final class SetNicknameViewController: UIViewController {
         super.viewWillAppear(animated)
         image = profile.setImage()
         if profile.state == .edit {
-            profile.nickname = UserDefaultManager.nickname
-            nickname = profile.nickname
+            nickname = UserDefaultManager.nickname
         }
     }
 
@@ -67,10 +66,10 @@ final class SetNicknameViewController: UIViewController {
     }
 
     @objc private func saveButtonTapped() {
-        guard profile.isPossible || nickname == UserDefaultManager.nickname else {
+        guard profile.isPossible(nickname: nickname) || nickname == UserDefaultManager.nickname else {
             return
         }
-        UserDefaultManager.editUserInfo(nickname: profile.nickname, image: image)
+        UserDefaultManager.editUserInfo(nickname: nickname, image: image)
         navigationController?.popViewController(animated: true)
     }
 }
@@ -84,14 +83,14 @@ extension SetNicknameViewController: SetNicknameViewDelegate {
     func textFieldDidChange(_ sender: UITextField) {
         let message = profile.determineNickname(input: sender.text)
         rootView.descriptionContent = message
-        profile.nickname = sender.text
+        nickname = sender.text
     }
 
     func completeButtonTapped() {
-        guard profile.isPossible else {
+        guard profile.isPossible(nickname: nickname) else {
             return
         }
-        UserDefaultManager.createUserInfo(nickname: profile.nickname, image: image)
+        UserDefaultManager.createUserInfo(nickname: nickname, image: image)
 
         let rootView = TabBarViewController()
         moveNextVCWithWindow(needNavi: false, vc: rootView)
