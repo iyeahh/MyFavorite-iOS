@@ -69,9 +69,10 @@ final class UserDefaultManager {
         }
     }
 
-    static func removeIsLike(isLike: Bool, productId: String) {
-        if UserDefaultManager.isLike == nil || UserDefaultManager.isLike == "" {
-            UserDefaultManager.isLike = "빈배열아님"
+    static func likeButtonTapped(isLike: Bool, productId: String) {
+        if UserDefaultManager.isLike == nil {
+            UserDefaultManager.isLike = productId
+            return
         }
 
         guard let isLikeString = UserDefaultManager.isLike else { return }
@@ -80,10 +81,14 @@ final class UserDefaultManager {
             UserDefaultManager.isLike = isLikeString + " " + productId
         } else {
             let array = isLikeString.makeArray
-            let removedArray = array.filter { str in
-                str != productId
+            if array.count == 1 {
+                let _ = UserDefaultManager.resetIsLike
+            } else {
+                let removedArray = array.filter { str in
+                    str != productId
+                }
+                UserDefaultManager.isLike = removedArray.joined(separator: " ")
             }
-            UserDefaultManager.isLike = removedArray.joined(separator: " ")
         }
     }
 

@@ -82,7 +82,7 @@ extension ResultViewController {
 extension ResultViewController: SearchResultRootViewDelegate {
     func isLikeCallBack(index: Int) {
         let itemInfo = result[index]
-        UserDefaultManager.removeIsLike(isLike: !itemInfo.isLiked, productId: itemInfo.productId)
+        UserDefaultManager.likeButtonTapped(isLike: !itemInfo.isLiked, productId: itemInfo.productId)
         result[index].isLiked.toggle()
     }
 

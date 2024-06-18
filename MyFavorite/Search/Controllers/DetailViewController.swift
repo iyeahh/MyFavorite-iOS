@@ -51,6 +51,6 @@ extension DetailViewController {
 
     @objc private func likeButtonTapped() {
         isLike.toggle()
-        UserDefaultManager.removeIsLike(isLike: isLike, productId: detailResult.productId)
+        UserDefaultManager.likeButtonTapped(isLike: isLike, productId: detailResult.productId)
     }
 }

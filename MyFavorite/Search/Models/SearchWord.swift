@@ -26,7 +26,7 @@ final class SearchWord {
     func removeWord(index: Int) -> [String] {
         guard let searchWords = UserDefaultManager.search else { return [] }
         var array = searchWords.makeArray
-        if array.count == 2 && array[1] == " " {
+        if array.count == 1 {
             let _ = UserDefaultManager.resetSearch
             return []
         }

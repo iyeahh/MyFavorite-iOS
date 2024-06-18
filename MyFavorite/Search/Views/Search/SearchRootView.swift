@@ -19,6 +19,7 @@ final class SearchRootView: UIView {
     var searchWordList: [String] = [] {
         didSet {
             if searchWordList == [] {
+                print("비어있잖니")
                 isEmptyWord(true)
                 searchWordTableView.reloadData()
                 return
@@ -186,6 +187,7 @@ extension SearchRootView {
 extension SearchRootView {
     private func configureUI() {
         backgroundColor = Constant.Color.secondary
+        isEmptyWord(true)
     }
 
     private func configureTableView() {
