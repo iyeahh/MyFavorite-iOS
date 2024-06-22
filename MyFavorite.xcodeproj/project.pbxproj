@@ -15,6 +15,7 @@
 		7611662D2C202E6600661581 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611662C2C202E6600661581 /* UIViewController+.swift */; };
 		7611662F2C20385E00661581 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611662E2C20385E00661581 /* SearchResult.swift */; };
 		761166312C204D8F00661581 /* DetailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166302C204D8F00661581 /* DetailResult.swift */; };
+		7630A1F62C269F16002C5109 /* NicknameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630A1F52C269F16002C5109 /* NicknameError.swift */; };
 		7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */; };
 		7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */; };
 		7658D0052C1BDCC60038FAB0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7658D0042C1BDCC60038FAB0 /* SnapKit */; };
@@ -69,6 +70,7 @@
 		7611662C2C202E6600661581 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		7611662E2C20385E00661581 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		761166302C204D8F00661581 /* DetailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResult.swift; sourceTree = "<group>"; };
+		7630A1F52C269F16002C5109 /* NicknameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameError.swift; sourceTree = "<group>"; };
 		7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorButton.swift; sourceTree = "<group>"; };
 		7658D0062C1BDEB90038FAB0 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7630A1F42C269EFE002C5109 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				7630A1F52C269F16002C5109 /* NicknameError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		7658CFFA2C1BD8310038FAB0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +296,7 @@
 			children = (
 				7691B1092C1AE5280091C42B /* AppDelegate.swift */,
 				7691B10B2C1AE5280091C42B /* SceneDelegate.swift */,
+				7630A1F42C269EFE002C5109 /* Error */,
 				7697EBA62C1EA672005D08E0 /* Protocol */,
 				7697EBA82C1EA687005D08E0 /* Util */,
 				7691B1242C1AE8A70091C42B /* Helper */,
@@ -471,6 +482,7 @@
 				767E5CFE2C1C67300045C2AF /* TabBarViewController.swift in Sources */,
 				76F58E652C1F00E700E038B5 /* ItemInfo.swift in Sources */,
 				7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */,
+				7630A1F62C269F16002C5109 /* NicknameError.swift in Sources */,
 				7697EB992C1D75DD005D08E0 /* GrayColorButton.swift in Sources */,
 				767E5CD82C1BEE9E0045C2AF /* SetNicknameViewController.swift in Sources */,
 				7697EB972C1D714E005D08E0 /* SearchResultCollectionViewCell.swift in Sources */,
@@ -647,6 +659,7 @@
 				DEVELOPMENT_TEAM = A9AQ72K5MY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyFavorite/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "양보라";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -679,6 +692,7 @@
 				DEVELOPMENT_TEAM = A9AQ72K5MY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyFavorite/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "양보라";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

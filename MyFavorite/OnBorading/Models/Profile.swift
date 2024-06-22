@@ -49,26 +49,19 @@ final class Profile {
         return tempImage
     }
 
-    func determineNickname(input: String?) -> String {
-        var message = ""
-
+    func validUserInput(input: String?) throws -> Void {
         guard let text = input else {
-            return Constant.LiteralString.Nickname.whiteSpace
+            throw NicknameError.whiteSpace
         }
 
         guard !text.isEmpty && !text.contains(" ") else {
-            return Constant.LiteralString.Nickname.whiteSpace
+            throw NicknameError.whiteSpace
         }
 
-        Constant.LiteralString.Nickname.ContainWrongCharactor.allCases.forEach { character in
+        try Constant.LiteralString.Nickname.ContainWrongCharactor.allCases.forEach { character in
             guard !text.contains(character.rawValue) else {
-                message = character.message
-                return
+                throw NicknameError.containSymbol
             }
-        }
-
-        guard message.count < 2 else {
-            return message
         }
 
         let numArray = text.filter { character in
@@ -76,13 +69,28 @@ final class Profile {
         }
 
         guard numArray.isEmpty else {
-            return Constant.LiteralString.Nickname.containNumber
+            throw NicknameError.containNumber
         }
 
         guard text.count > 1 && text.count < 10 else {
-            return Constant.LiteralString.Nickname.incorrectNumber
+            throw NicknameError.incorrectNumber
         }
+    }
 
-        return Constant.LiteralString.Nickname.possible
+    func determineNickname(input: String?) -> String {
+        do {
+            try validUserInput(input: input)
+            return Constant.LiteralString.Nickname.possible
+        } catch NicknameError.containNumber {
+            return Constant.LiteralString.Nickname.containNumber
+        } catch NicknameError.containSymbol {
+            return Constant.LiteralString.Nickname.containSymbol
+        } catch NicknameError.incorrectNumber {
+            return Constant.LiteralString.Nickname.incorrectNumber
+        } catch NicknameError.whiteSpace {
+            return Constant.LiteralString.Nickname.whiteSpace
+        } catch {
+            return "닉네임 양식에 맞지 않음"
+        }
     }
 }

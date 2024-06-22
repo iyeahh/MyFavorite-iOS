@@ -97,16 +97,13 @@ enum Constant {
             static let incorrectNumber = "2글자 이상 10글자 미만으로 설정해주세요."
             static let containNumber = "닉네임에 숫자는 포함할 수 없어요."
             static let whiteSpace = "닉네임에 공백은 포함할 수 없어요."
+            static let containSymbol = "닉네임에 @, #, $, %는 포함할 수 없어요."
 
             enum ContainWrongCharactor: String, CaseIterable {
                 case at = "@"
                 case sharp = "#"
                 case dollar = "$"
                 case percent = "%"
-
-                var message: String {
-                    return "닉네임에 \(self.rawValue)는 포함할 수 없어요."
-                }
             }
         }
 
