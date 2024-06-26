@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SearchWordTableViewCell: UITableViewCell {
+final class SearchWordTableViewCell: BaseTableViewCell {
     var removeCallBack: (() -> Void)?
 
     private let iconImageView = {
@@ -35,29 +35,17 @@ final class SearchWordTableViewCell: UITableViewCell {
         return button
     }()
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureHierarchy()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     @objc private func removeWordButtonTapped(searchWordIndex: Int) {
         removeCallBack?()
     }
-}
 
-extension SearchWordTableViewCell {
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         contentView.addSubview(iconImageView)
         contentView.addSubview(removeWordButton)
         contentView.addSubview(searchWordLabel)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         iconImageView.snp.makeConstraints { make in
             make.verticalEdges.leading.equalToSuperview().inset(10)
             make.width.equalTo(iconImageView.snp.height)

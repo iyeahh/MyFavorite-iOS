@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-final class SearchResultCollectionViewCell: UICollectionViewCell {
+final class SearchResultCollectionViewCell: BaseCollectionViewCell {
     var isLikeCallBack: (() -> Void)?
 
     private let resultImageView = {
@@ -65,23 +65,11 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureHierarchy()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     @objc private func isLikeButtonTapped() {
         isLikeCallBack?()
     }
-}
 
-extension SearchResultCollectionViewCell {
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         contentView.addSubview(resultImageView)
         contentView.addSubview(isLikeBackgrounView)
         contentView.addSubview(isLikeImagaeView)
@@ -91,7 +79,7 @@ extension SearchResultCollectionViewCell {
         contentView.addSubview(priceLabel)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         resultImageView.snp.makeConstraints { make in
             make.horizontalEdges.top.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.75)

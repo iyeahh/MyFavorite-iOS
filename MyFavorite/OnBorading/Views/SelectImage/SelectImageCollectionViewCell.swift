@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SelectImageCollectionViewCell: UICollectionViewCell {
+final class SelectImageCollectionViewCell: BaseCollectionViewCell {
     private let profileImageView = {
         let value = Constant.Charactor.unSelected.borderSetting
         let imageView = ProfileImageView(borderColor: Constant.Color.secondaryLightGray, borderWidth: value.borderWidth)
@@ -16,29 +16,17 @@ final class SelectImageCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureHierarchy()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
         profileImageView.layoutIfNeeded()
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
     }
-}
 
-extension SelectImageCollectionViewCell {
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         contentView.addSubview(profileImageView)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         profileImageView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.width.equalToSuperview()

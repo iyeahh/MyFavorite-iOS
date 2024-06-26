@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SettingTableViewCell: UITableViewCell {
+final class SettingTableViewCell: BaseTableViewCell {
     private let settingLabel = {
         let label = UILabel()
         label.textColor = Constant.Color.primary
@@ -30,25 +30,13 @@ final class SettingTableViewCell: UITableViewCell {
         return label
     }()
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureHierarchy()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension SettingTableViewCell {
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         contentView.addSubview(settingLabel)
         contentView.addSubview(likeImageView)
         contentView.addSubview(likeCountLabel)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         settingLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.centerY.equalToSuperview()
