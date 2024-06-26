@@ -101,11 +101,6 @@ final class SettingRootView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        configureUI()
-    }
-
     @objc private func editButtonTapped() {
         settingRootViewDelegate?.editButtonTapped()
     }
