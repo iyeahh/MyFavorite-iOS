@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 import SnapKit
 
-final class SearchDetailRootView: UIView {
+final class SearchDetailRootView: BaseView {
     var urlString: String
 
     private let webView = WKWebView()
@@ -17,30 +17,17 @@ final class SearchDetailRootView: UIView {
     init(urlString: String) {
         self.urlString = urlString
         super.init(frame: .zero)
-        configureHierarchy()
-        configureLayout()
-        configureUI()
         webViewLoad()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
-extension SearchDetailRootView {
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(webView)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         webView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
         }
-    }
-
-    private func configureUI() {
-        backgroundColor = Constant.Color.secondary
     }
 
     private func webViewLoad() {

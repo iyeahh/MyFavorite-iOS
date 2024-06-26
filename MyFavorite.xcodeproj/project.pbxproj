@@ -15,6 +15,7 @@
 		7611662D2C202E6600661581 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611662C2C202E6600661581 /* UIViewController+.swift */; };
 		7611662F2C20385E00661581 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611662E2C20385E00661581 /* SearchResult.swift */; };
 		761166312C204D8F00661581 /* DetailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761166302C204D8F00661581 /* DetailResult.swift */; };
+		761984D72C2BF71D002D9098 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761984D62C2BF71D002D9098 /* BaseView.swift */; };
 		7630A1F62C269F16002C5109 /* NicknameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7630A1F52C269F16002C5109 /* NicknameError.swift */; };
 		7658CFFF2C1BD8C00038FAB0 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */; };
 		7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */; };
@@ -70,6 +71,7 @@
 		7611662C2C202E6600661581 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		7611662E2C20385E00661581 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		761166302C204D8F00661581 /* DetailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResult.swift; sourceTree = "<group>"; };
+		761984D62C2BF71D002D9098 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7630A1F52C269F16002C5109 /* NicknameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameError.swift; sourceTree = "<group>"; };
 		7658CFFE2C1BD8C00038FAB0 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		7658D0012C1BDAC30038FAB0 /* AccentColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentColorButton.swift; sourceTree = "<group>"; };
@@ -129,6 +131,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		761984D52C2BF65B002D9098 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				761984D62C2BF71D002D9098 /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		7630A1F42C269EFE002C5109 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +311,7 @@
 				7697EBA82C1EA687005D08E0 /* Util */,
 				7691B1242C1AE8A70091C42B /* Helper */,
 				7691B1272C1AEABD0091C42B /* Extension */,
+				761984D52C2BF65B002D9098 /* Base */,
 				7658D0002C1BDA530038FAB0 /* CustomView */,
 				7658CFFD2C1BD8830038FAB0 /* OnBorading */,
 				767E5CF72C1C4B240045C2AF /* Search */,
@@ -487,6 +498,7 @@
 				767E5CD82C1BEE9E0045C2AF /* SetNicknameViewController.swift in Sources */,
 				7697EB972C1D714E005D08E0 /* SearchResultCollectionViewCell.swift in Sources */,
 				7658D0022C1BDAC30038FAB0 /* AccentColorButton.swift in Sources */,
+				761984D72C2BF71D002D9098 /* BaseView.swift in Sources */,
 				767E5CD42C1BE4FB0045C2AF /* SetNicknameView.swift in Sources */,
 				767E5CD62C1BE7830045C2AF /* BarView.swift in Sources */,
 				76ADE37C2C1F1F0200CC23CB /* DetailViewController.swift in Sources */,

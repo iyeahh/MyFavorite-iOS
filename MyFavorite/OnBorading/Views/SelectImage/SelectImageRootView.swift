@@ -12,7 +12,7 @@ protocol SelectImageRootViewDelegate: AnyObject {
     func didSelectItemAt(indexPath: IndexPath)
 }
 
-class SelectImageRootView: UIView {
+class SelectImageRootView: BaseView {
     let imageList: [Int]
 
     var selectedimage = 0 {
@@ -65,30 +65,17 @@ class SelectImageRootView: UIView {
     init(imageList: [Int]) {
         self.imageList = imageList
         super.init(frame: .zero)
-        configureUI()
-        configureHierarchy()
-        configureLayout()
         configureCollectionView()
     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         cameraBackImageView.layer.cornerRadius = cameraBackImageView.frame.width / 2
         cameraCircleImageView.layer.cornerRadius = cameraCircleImageView.frame.width / 2
     }
-}
 
-extension SelectImageRootView {
-    private func configureUI() {
-        backgroundColor = Constant.Color.secondary
-    }
-
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(barView)
         addSubview(profileImageView)
         addSubview(cameraBackImageView)
@@ -96,7 +83,7 @@ extension SelectImageRootView {
         addSubview(imageCollectionView)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         barView.snp.makeConstraints { make in
             make.horizontalEdges.top.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(1)

@@ -14,7 +14,7 @@ protocol SetNicknameViewDelegate: AnyObject {
     func completeButtonTapped()
 }
 
-final class SetNicknameView: UIView {
+final class SetNicknameView: BaseView {
     var state: State
 
     var nickname: String? {
@@ -104,30 +104,16 @@ final class SetNicknameView: UIView {
         if state == .edit {
             completeButton.isHidden = true
         }
-
-        configureUI()
-        configureHierarchy()
-        configureLayout()
     }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         cameraBackImageView.layer.cornerRadius = cameraBackImageView.frame.width / 2
         cameraCircleImageView.layer.cornerRadius = cameraCircleImageView.frame.width / 2
     }
-}
-
-extension SetNicknameView {
-    private func configureUI() {
-        backgroundColor = Constant.Color.secondary
-    }
-
-    private func configureHierarchy() {
+    
+    override func configureHierarchy() {
         addSubview(naviBarView)
         addSubview(profileImageView)
         addSubview(setImageButton)
@@ -139,7 +125,7 @@ extension SetNicknameView {
         addSubview(completeButton)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         naviBarView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(1)

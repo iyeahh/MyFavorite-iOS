@@ -15,7 +15,7 @@ protocol SearchRootViewDelegate: AnyObject {
     func selectCell(index: Int)
 }
 
-final class SearchRootView: UIView {
+final class SearchRootView: BaseView {
     var searchWordList: [String] = [] {
         didSet {
             if searchWordList == [] {
@@ -91,11 +91,9 @@ final class SearchRootView: UIView {
         self.searchWordList = searchWordList
         super.init(frame: .zero)
 
-        configureHierarchy()
         emptyWordConfigureHierarchy()
         searchWordConfigureHierarchy()
 
-        configureLayout()
         emptyWordCconfigureLayout()
         searchWordConfigureLayout()
 
@@ -103,37 +101,18 @@ final class SearchRootView: UIView {
         configureTableView()
         configureSearchBar()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     @objc private func removeAllButtonTapped() {
         searchRootViewDelegate?.removeAllButtonTapped()
     }
-}
 
-extension SearchRootView {
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(searchBar)
         addSubview(topBarView)
         addSubview(bottomBarView)
     }
 
-    private func emptyWordConfigureHierarchy() {
-        addSubview(emptyWordImageView)
-        addSubview(emptyWordLabel)
-    }
-
-    private func searchWordConfigureHierarchy() {
-        addSubview(resultLabel)
-        addSubview(removeAllButton)
-        addSubview(searchWordTableView)
-    }
-}
-
-extension SearchRootView {
-    private func configureLayout() {
+    override func configureLayout() {
         searchBar.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
             make.top.equalTo(safeAreaLayoutGuide)
@@ -152,6 +131,29 @@ extension SearchRootView {
         }
     }
 
+    private func configureUI() {
+        if UserDefaultManager.searchWordList == nil {
+            isEmptyWord(true)
+        } else {
+            isEmptyWord(false)
+        }
+    }
+}
+
+extension SearchRootView {
+    private func emptyWordConfigureHierarchy() {
+        addSubview(emptyWordImageView)
+        addSubview(emptyWordLabel)
+    }
+
+    private func searchWordConfigureHierarchy() {
+        addSubview(resultLabel)
+        addSubview(removeAllButton)
+        addSubview(searchWordTableView)
+    }
+}
+
+extension SearchRootView {
     private func emptyWordCconfigureLayout() {
         emptyWordImageView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
@@ -185,15 +187,6 @@ extension SearchRootView {
 }
 
 extension SearchRootView {
-    private func configureUI() {
-        backgroundColor = Constant.Color.secondary
-        if UserDefaultManager.searchWordList == nil {
-            isEmptyWord(true)
-        } else {
-            isEmptyWord(false)
-        }
-    }
-
     private func configureTableView() {
         searchWordTableView.delegate = self
         searchWordTableView.dataSource = self

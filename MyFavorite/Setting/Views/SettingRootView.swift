@@ -13,7 +13,7 @@ protocol SettingRootViewDelegate: AnyObject {
     func editButtonTapped()
 }
 
-final class SettingRootView: UIView {
+final class SettingRootView: BaseView {
     var userInfo: UserInfo? {
         didSet {
             configureUserInfo()
@@ -90,28 +90,15 @@ final class SettingRootView: UIView {
     init(userInfo: UserInfo?) {
         self.userInfo = userInfo
         super.init(frame: .zero)
-        configureUI()
-        configureHierarchy()
-        configureLayout()
         configureTableView()
         configureUserInfo()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     @objc private func editButtonTapped() {
         settingRootViewDelegate?.editButtonTapped()
     }
-}
 
-extension SettingRootView {
-    private func configureUI() {
-        backgroundColor = Constant.Color.secondary
-    }
-
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(topBarView)
         addSubview(profileImageView)
         addSubview(nickNameLabel)
@@ -123,7 +110,7 @@ extension SettingRootView {
         addSubview(bottomBarView)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         topBarView.snp.makeConstraints { make in
             make.horizontalEdges.top.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(1)
@@ -174,7 +161,9 @@ extension SettingRootView {
             make.height.equalTo(1)
         }
     }
+}
 
+extension SettingRootView {
     private func configureTableView() {
         settingTableView.delegate = self
         settingTableView.dataSource = self

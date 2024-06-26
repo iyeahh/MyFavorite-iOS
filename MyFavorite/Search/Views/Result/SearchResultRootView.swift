@@ -15,7 +15,7 @@ protocol SearchResultRootViewDelegate: AnyObject {
     func selectedCell(index: Int)
 }
 
-final class SearchResultRootView: UIView {
+final class SearchResultRootView: BaseView {
     var total: String = "" {
         didSet {
             resultCountLabel.text = total
@@ -99,23 +99,10 @@ final class SearchResultRootView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureUI()
-        configureHierarchy()
-        configureLayout()
         configureCollectionView()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
-extension SearchResultRootView {
-    private func configureUI() {
-        backgroundColor = Constant.Color.secondary
-    }
-
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(topBarView)
         addSubview(resultCountLabel)
         addSubview(accuracySortButton)
@@ -126,7 +113,7 @@ extension SearchResultRootView {
         addSubview(bottomBarView)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         topBarView.snp.makeConstraints { make in
             make.horizontalEdges.top.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(1)
@@ -205,7 +192,7 @@ extension SearchResultRootView: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as? SearchResultCollectionViewCell else {
             return UICollectionViewCell()

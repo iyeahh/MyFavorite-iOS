@@ -12,7 +12,7 @@ protocol OnBoardingViewDelegate: AnyObject {
     func startButtonTapped()
 }
 
-final class OnBoardingView: UIView {
+final class OnBoardingView: BaseView {
     private let serviceTitleLabel = {
         let label = UILabel()
         label.font = Constant.Font.title
@@ -37,34 +37,17 @@ final class OnBoardingView: UIView {
 
     weak var onBoardingViewDelegate: OnBoardingViewDelegate?
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureUI()
-        configureHierarchy()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     @objc private func startButtonTapped() {
         onBoardingViewDelegate?.startButtonTapped()
     }
-}
 
-extension OnBoardingView {
-    private func configureUI() {
-        self.backgroundColor = Constant.Color.secondary
-    }
-
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(serviceTitleLabel)
         addSubview(mainImageView)
         addSubview(startButton)
     }
 
-    private func configureLayout() {
+    override func configureLayout() {
         serviceTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(150)
             make.horizontalEdges.equalToSuperview().inset(30)
